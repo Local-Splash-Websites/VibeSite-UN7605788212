@@ -393,7 +393,7 @@ def render_home(site, page, pages, images, reviews):
     for item in pages:
         if item.get("template") != "service":
             continue
-        photo = images[item["image"]]
+        photo = images[item.get("hero") or item["image"]]
         eager = len(cards) < 3
         cards.append(f"""
 <article class="service-card">
@@ -407,9 +407,12 @@ def render_home(site, page, pages, images, reviews):
   </a>
 </article>
 """)
+    trust_photos = ["pool-and-stucco-home", "labeled-breaker-panel", "kitchen-range-hood"]
     trust = "\n".join(
-        f"<li><h3>{esc(item['title'])}</h3><p>{esc(item['text'])}</p></li>"
-        for item in page["trust"]
+        "<li>"
+        + picture(images[photo_id], "(max-width: 700px) 100vw, 380px")
+        + f"<div><h3>{esc(item['title'])}</h3><p>{esc(item['text'])}</p></div></li>"
+        for item, photo_id in zip(page["trust"], trust_photos)
     )
     areas = "\n".join(f"<li>{esc(area)}</li>" for area in site["service_areas"])
     review_html = []
@@ -422,108 +425,128 @@ def render_home(site, page, pages, images, reviews):
 </blockquote>
 """)
     gallery_ids = [
-        "desert-home-arched-gate",
         "kitchen-tile-backsplash",
+        "modern-courtyard-blue-doors",
+        "covered-patio-ceiling-fans",
+        "black-ceiling-fan",
         "bathroom-freestanding-tub",
-        "branch-chandelier-dining",
         "labeled-breaker-panel",
-        "pool-and-stucco-home",
+        "kitchen-remodel-in-progress",
+        "desert-home-arched-gate",
     ]
     thumbs = "\n".join(
         f'<li><a href="/gallery/">{picture(images[item], "(max-width: 700px) 50vw, 240px")}</a></li>'
         for item in gallery_ids
     )
+    home_inner = f"""
+<p class="eyebrow">{esc(page["eyebrow"])}</p>
+<h1>{esc(page["h1"])}</h1>
+<p class="tagline">“{esc(site["tagline"])}”</p>
+<p class="lede">{esc(page["intro"])}</p>
+<div class="hero-actions">
+  <a class="button" href="tel:{esc(site["phone_tel"])}">Call {esc(site["phone_display"])}</a>
+  <a class="button button-quiet" href="/contact/">Request a quote</a>
+</div>
+<p class="license">License # {esc(site["license"])} · Established {esc(site["established"])} · Licensed and insured</p>
+"""
     body = f"""
-<section class="hero">
-  {picture(hero, "100vw", eager=True, class_name="hero-photo")}
-  <div class="wrap hero-copy">
-    <p class="eyebrow">{esc(page["eyebrow"])}</p>
-    <h1>{esc(page["h1"])}</h1>
-    <p class="tagline">“{esc(site["tagline"])}”</p>
-    <p class="lede">{esc(page["intro"])}</p>
-    <div class="hero-actions">
-      <a class="button" href="tel:{esc(site["phone_tel"])}">Call {esc(site["phone_display"])}</a>
-      <a class="button button-quiet" href="/contact/">Request a quote</a>
-    </div>
-    <p class="license">License # {esc(site["license"])} · Established {esc(site["established"])} · Licensed and insured</p>
-  </div>
-</section>
+{photo_hero(hero, home_inner)}
 <section class="trust-bar" aria-label="Business facts">
   <div class="wrap">
     <ul>
-      <li>Established {esc(site["established"])}</li>
-      <li>License # {esc(site["license"])}</li>
       <li>Licensed and insured</li>
-      <li>{esc(site["hours_summary"])}</li>
+      <li>CSLB #{esc(site["license"])}</li>
+      <li>Since {esc(site["established"])}</li>
+      <li>{esc(" · ".join(site["service_areas"]))}</li>
+      <li>{esc(" · ".join(site["payment_methods"]))}</li>
     </ul>
   </div>
 </section>
-<section class="section">
+<section class="section tight">
   <div class="wrap">
-    <h2>{esc(page["services_heading"])}</h2>
-    <p class="section-intro">{esc(page["services_intro"])}</p>
+    <div class="section-head">
+      <h2>{esc(page["services_heading"])}</h2>
+      <p>{esc(page["services_intro"])}</p>
+    </div>
     <div class="service-grid">
       {"".join(cards)}
     </div>
   </div>
 </section>
-<section class="section section-split">
+<section class="section tight">
   <div class="wrap split">
     <div>
       <h2>{esc(page["story_heading"])}</h2>
       {paragraphs(page["story"])}
       <p><a class="text-link" href="/about/">Read our story</a></p>
     </div>
-    <div>
-      {picture(images["open-living-room-kitchen"], "(max-width: 800px) 100vw, 540px")}
-    </div>
+    {picture(images["interior-slat-accent-wall"], "(max-width: 800px) 100vw, 560px")}
   </div>
 </section>
-<section class="section">
+<section class="section tight">
   <div class="wrap">
     <h2>{esc(page["trust_heading"])}</h2>
     <ul class="trust-grid">{trust}</ul>
   </div>
 </section>
-<section class="section">
-  <div class="wrap">
-    <h2>Service area</h2>
-    <p class="section-intro">Proudly serving homeowners across these communities.</p>
-    <ul class="area-list">{areas}</ul>
+<section class="photo-band">
+  {picture(images["pool-and-stucco-home"], "100vw", class_name="photo-band-img")}
+  <div class="photo-band-copy">
+    <div class="wrap">
+      <h2>Service area</h2>
+      <ul class="area-list">{areas}</ul>
+    </div>
   </div>
 </section>
-<section class="section">
+<section class="section tight">
   <div class="wrap">
-    <h2>What our customers say</h2>
-    <p class="section-intro">Google reviews published on our previous website.</p>
+    <div class="section-head">
+      <h2>What our customers say</h2>
+      <p>Google reviews from the previous website. <a href="{esc(site["review_url"])}">Share your experience on Google</a></p>
+    </div>
     <div class="reviews">
       {"".join(review_html)}
     </div>
-    <p><a class="text-link" href="{esc(site["review_url"])}">Share your experience on Google</a></p>
   </div>
 </section>
-<section class="section">
+<section class="section tight">
   <div class="wrap">
-    <h2>Project photos</h2>
+    <div class="section-head">
+      <h2>Project photos</h2>
+      <a class="text-link" href="/gallery/">View the gallery</a>
+    </div>
     <ul class="thumb-grid">{thumbs}</ul>
-    <p><a class="text-link" href="/gallery/">View the gallery</a></p>
   </div>
 </section>
-<section class="section" id="quote">
+<section class="section tight" id="quote">
   <div class="wrap split">
+    {picture(images["kitchen-gray-cabinets-shelves"], "(max-width: 800px) 100vw, 520px")}
     <div>
       <h2>Request a quote</h2>
-      <p>Tell us about the electrical or remodeling work. You can also call <a href="tel:{esc(site["phone_tel"])}">{esc(site["phone_display"])}</a>.</p>
-      {hours_list(site)}
+      <p>Tell us about the electrical or remodeling work, or call <a href="tel:{esc(site["phone_tel"])}">{esc(site["phone_display"])}</a>.</p>
+      {form(site, "/", "home-quote")}
     </div>
-    {form(site, "/", "home-quote")}
   </div>
 </section>
 """
     return body
 
 
+def photo_hero(image, inner):
+    return f"""
+<header class="photo-hero">
+  {picture(image, "100vw", eager=True, class_name="photo-hero-img")}
+  <div class="photo-hero-copy">
+    <div class="wrap">
+      {inner}
+    </div>
+  </div>
+</header>
+"""
+
+
 def render_service(site, page, pages, images):
+    hero = images[page.get("hero") or page["image"]]
     photo = images[page["image"]]
     sections = []
     for section in page["sections"]:
@@ -540,27 +563,43 @@ def render_service(site, page, pages, images):
         if item.get("group") == page.get("group") and item["id"] != page["id"]
     ]
     related_html = "\n".join(
-        f'<li><a href="{esc(href(item["path"]))}">{esc(item["nav"])}</a></li>' for item in related
+        f"""<article class="service-card"><a href="{esc(href(item["path"]))}">
+          {picture(images[item.get("hero") or item["image"]], "(max-width: 700px) 100vw, 280px")}
+          <div><h3>{esc(item["nav"])}</h3></div>
+        </a></article>"""
+        for item in related
     )
+    before_after = ""
+    if page["id"] == "home-renovations":
+        shot = images["renovation-render-interior"]
+        before_after = f"""
+<figure class="before-after">
+  {picture(shot, "(max-width: 900px) 100vw, 1100px", class_name="natural-photo")}
+  <figcaption>{esc(shot["alt"])}</figcaption>
+</figure>
+"""
+    inner = f"""
+<p class="eyebrow"><a href="/">Home</a> · {esc(page["group"].title())}</p>
+<h1>{esc(page["h1"])}</h1>
+<p class="lede">{esc(page["lede"])}</p>
+<p class="hero-actions"><a class="button" href="tel:{esc(site["phone_tel"])}">Call {esc(site["phone_display"])}</a>
+<a class="button button-quiet" href="/contact/">Request a quote</a></p>
+"""
     return f"""
 <article class="page">
-  <header class="page-hero">
-    <div class="wrap">
-      <p class="eyebrow"><a href="/">Home</a> · {esc(page["group"].title())}</p>
-      <h1>{esc(page["h1"])}</h1>
-      <p class="lede">{esc(page["lede"])}</p>
-      <p><a class="button" href="tel:{esc(site["phone_tel"])}">Call {esc(site["phone_display"])}</a></p>
-    </div>
-  </header>
+  {photo_hero(hero, inner)}
   <div class="wrap page-grid">
     <div class="prose">
       {"".join(sections)}
-      <h2>Related services</h2>
-      <ul>{related_html}</ul>
+      {before_after}
     </div>
     <aside class="page-photo">
-      {picture(photo, "(max-width: 800px) 100vw, 480px")}
+      {picture(photo, "(max-width: 800px) 100vw, 420px")}
     </aside>
+  </div>
+  <div class="wrap related">
+    <h2>Related services</h2>
+    <div class="service-grid">{related_html}</div>
   </div>
 </article>
 {cta(site)}
@@ -568,29 +607,41 @@ def render_service(site, page, pages, images):
 
 
 def render_about(site, page, images):
-    photo = images[page["image"]]
+    hero = images[page.get("hero") or page["image"]]
     services = bullets(page["services"])
+    paragraphs_html = page["paragraphs"]
+    inner = f"""
+<p class="eyebrow">Established {esc(site["established"])} · License # {esc(site["license"])}</p>
+<h1>{esc(page["h1"])}</h1>
+<p class="lede">“{esc(site["tagline"])}”</p>
+<p class="hero-actions"><a class="button" href="tel:{esc(site["phone_tel"])}">Call {esc(site["phone_display"])}</a>
+<a class="button button-quiet" href="/contact/">Request a quote</a></p>
+"""
     return f"""
 <article class="page">
-  <header class="page-hero">
-    <div class="wrap">
-      <p class="eyebrow">Established {esc(site["established"])}</p>
-      <h1>{esc(page["h1"])}</h1>
-      <p class="lede">“{esc(site["tagline"])}”</p>
-    </div>
-  </header>
+  {photo_hero(hero, inner)}
   <div class="wrap page-grid">
     <div class="prose">
-      {paragraphs(page["paragraphs"])}
+      {paragraphs(paragraphs_html[:2])}
       <blockquote class="mission"><p>{esc(site["mission"])}</p></blockquote>
-      <h2>Our services</h2>
-      <p>{esc(page["services_intro"])}</p>
-      {services}
-      <p>License # {esc(site["license"])}.</p>
     </div>
     <aside class="page-photo">
-      {picture(photo, "(max-width: 800px) 100vw, 480px")}
+      {picture(images["pool-and-stucco-home"], "(max-width: 800px) 100vw, 480px")}
     </aside>
+  </div>
+  <div class="wrap page-grid">
+    <aside class="page-photo">
+      {picture(images["kitchen-pass-through-chandelier"], "(max-width: 800px) 100vw, 480px")}
+    </aside>
+    <div class="prose">
+      {paragraphs(paragraphs_html[2:])}
+      <p>License # {esc(site["license"])}.</p>
+    </div>
+  </div>
+  <div class="wrap prose">
+    <h2>Our services</h2>
+    <p>{esc(page["services_intro"])}</p>
+    <div class="service-columns">{services}</div>
   </div>
 </article>
 {cta(site)}
@@ -598,45 +649,57 @@ def render_about(site, page, images):
 
 
 def render_gallery(page, images):
+    hero = images[page.get("hero") or "desert-home-tile-roof"]
+    natural = []
     figures = []
     for image in images.values():
-        if image["role"] == "logo":
+        if image.get("role") in ("logo", "archive"):
             continue
-        figures.append(f"""
-<li>
+        if image.get("uncropped"):
+            natural.append(f"""
+<li class="full">
   <figure>
-    {picture(image, "(max-width: 700px) 100vw, 360px")}
+    {picture(image, "(max-width: 900px) 100vw, 1100px", class_name="natural-photo")}
     <figcaption>{esc(image["alt"])}</figcaption>
   </figure>
 </li>
 """)
+            continue
+        figures.append(f"""
+<li>
+  <figure>
+    {picture(image, "(max-width: 700px) 100vw, 320px")}
+    <figcaption>{esc(image["alt"])}</figcaption>
+  </figure>
+</li>
+""")
+    inner = f"""
+<h1>{esc(page["h1"])}</h1>
+<p class="lede">{esc(page["intro"])}</p>
+"""
     return f"""
 <article class="page">
-  <header class="page-hero">
-    <div class="wrap">
-      <h1>{esc(page["h1"])}</h1>
-      <p class="lede">{esc(page["intro"])}</p>
-    </div>
-  </header>
+  {photo_hero(hero, inner)}
   <div class="wrap">
-    <ul class="gallery">{"".join(figures)}</ul>
+    <ul class="gallery">{"".join(figures)}{"".join(natural)}</ul>
   </div>
 </article>
 """
 
 
-def render_contact(site, page):
+def render_contact(site, page, images):
     address = site["address"]
     payments = ", ".join(esc(item) for item in site["payment_methods"])
     areas = "\n".join(f"<li>{esc(area)}</li>" for area in site["service_areas"])
+    hero = images[page.get("hero") or "desert-home-tile-roof"]
+    inner = f"""
+<h1>{esc(page["h1"])}</h1>
+<p class="lede">{esc(page["intro"])}</p>
+<p class="hero-actions"><a class="button" href="tel:{esc(site["phone_tel"])}">Call {esc(site["phone_display"])}</a></p>
+"""
     return f"""
 <article class="page">
-  <header class="page-hero">
-    <div class="wrap">
-      <h1>{esc(page["h1"])}</h1>
-      <p class="lede">{esc(page["intro"])}</p>
-    </div>
-  </header>
+  {photo_hero(hero, inner)}
   <div class="wrap contact-grid">
     <section class="contact-card" aria-labelledby="contact-info">
       <h2 id="contact-info">Contact info</h2>
@@ -793,21 +856,18 @@ def main():
     for page in pages:
         if page["template"] == "service":
             body = render_service(site, page, pages, images)
-            hero_image = images[page["image"]]
         elif page["template"] == "about":
             body = render_about(site, page, images)
-            hero_image = images[page["image"]]
         elif page["template"] == "gallery":
             body = render_gallery(page, images)
-            hero_image = images["desert-home-tile-roof"]
         elif page["template"] == "contact":
-            body = render_contact(site, page)
-            hero_image = images["desert-home-tile-roof"]
+            body = render_contact(site, page, images)
         elif page["template"] == "privacy":
             body = render_privacy(page, privacy, site)
-            hero_image = images["desert-home-tile-roof"]
         else:
             raise SystemExit(f"Unknown template {page['template']}")
+        hero_key = page.get("hero") or page.get("image") or "desert-home-tile-roof"
+        hero_image = images[hero_key]
         meta = {"path": page["path"], "title": page["title"], "description": page["description"]}
         write_page(output_path(PUBLIC, page["path"]), layout(site, meta, pages, body, hero_image, year))
 

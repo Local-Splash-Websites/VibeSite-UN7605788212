@@ -1,5 +1,9 @@
 # Notes
 
+## Round 2 photos
+
+The client sent 20 project photos. They are the same scenes as the Duda gallery, several of them at a higher resolution (panels, lighting, kitchens, the before-and-after room). Those files replaced the smaller copies. The before-and-after renovation image is shown at its natural aspect, not cropped. A tighter duplicate of the lit recessed downlight was left out of the gallery so the page does not show the same ceiling twice.
+
 ## Resolved
 
 Display phone is **(760) 227-5499** everywhere: header, calls to action, footer, contact page, `tel:+17602275499` links, JSON-LD `telephone`, and `data/site.json`.

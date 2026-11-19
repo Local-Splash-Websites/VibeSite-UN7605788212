@@ -39,7 +39,7 @@ def image_lookup(images):
     return {item["id"]: item for item in images}
 
 
-def picture(image, sizes, eager=False, class_name=""):
+def picture(image, sizes, eager=False, class_name="", priority=""):
     variants = sorted(image["variants"], key=lambda item: item["width"])
     fallback = variants[0]
     largest = variants[-1]
@@ -57,6 +57,8 @@ def picture(image, sizes, eager=False, class_name=""):
     ]
     if eager:
         attrs.append('fetchpriority="high"')
+    elif priority == "low":
+        attrs.append('fetchpriority="low"')
     else:
         attrs.append('loading="lazy"')
     if class_name:
@@ -210,11 +212,13 @@ def header(site, pages, current_path):
     return f"""
 <a class="skip" href="#main">Skip to content</a>
 <div class="utility-bar">
-  <div class="wrap utility-inner">
-    <p>La Quinta, CA</p>
-    <p><a href="tel:{esc(site["phone_tel"])}">{esc(site["phone_display"])}</a></p>
-    <p>CSLB #{esc(number)} · Mon–Fri 8:00 a.m.–5:00 p.m.</p>
-  </div>
+  <p class="wrap utility-inner">
+    <span>La Quinta, CA</span>
+    <span class="utility-dot" aria-hidden="true">·</span>
+    <a href="tel:{esc(site["phone_tel"])}">{esc(site["phone_display"])}</a>
+    <span class="utility-dot" aria-hidden="true">·</span>
+    <span>CSLB #{esc(number)}</span>
+  </p>
 </div>
 <header class="site-header">
   <div class="wrap header-bar">
@@ -223,11 +227,8 @@ def header(site, pages, current_path):
     </a>
     {nav(site, pages, current_path)}
     <div class="header-actions">
-      <a class="header-quote" href="/contact/">Request a quote</a>
-      <a class="phone-button" href="tel:{esc(site["phone_tel"])}">
-        <span class="phone-kicker">Call</span>
-        <span class="phone-number">{esc(site["phone_display"])}</span>
-      </a>
+      <a class="btn-slant btn-quote" href="/contact/">Get a quote</a>
+      <a class="btn-slant btn-call" href="tel:{esc(site["phone_tel"])}">Call <span class="visually-hidden">{esc(site["phone_display"])}</span></a>
     </div>
   </div>
 </header>
@@ -341,8 +342,8 @@ def cta(site, marketing):
       <p>{esc(block["text"])}</p>
     </div>
     <div class="cta-actions">
-      <a class="button" href="tel:{esc(site["phone_tel"])}">{esc(block["call_label"])}</a>
-      <a class="button button-quiet" href="/contact/">{esc(block["quote_label"])}</a>
+      <a class="btn-slant btn-call" href="tel:{esc(site["phone_tel"])}">{esc(block["call_label"])}</a>
+      <a class="btn-slant btn-quote" href="/contact/">{esc(block["quote_label"])}</a>
     </div>
   </div>
 </aside>
@@ -356,7 +357,7 @@ def why_section(marketing):
         for item in block["items"]
     )
     return f"""
-<section class="section tight">
+<section class="section band-paper">
   <div class="wrap">
     <p class="eyebrow">{esc(block["eyebrow"])}</p>
     <h2>{esc(block["heading"])}</h2>
@@ -373,7 +374,7 @@ def process_section(marketing):
         for index, step in enumerate(block["steps"], start=1)
     )
     return f"""
-<section class="section tight process">
+<section class="section band-navy process">
   <div class="wrap">
     <p class="eyebrow">{esc(block["eyebrow"])}</p>
     <h2>{esc(block["heading"])}</h2>
@@ -389,7 +390,7 @@ def faq_section(items, eyebrow, heading):
         for item in items
     )
     return f"""
-<section class="section tight">
+<section class="section band-white">
   <div class="wrap faq-wrap">
     <p class="eyebrow">{esc(eyebrow)}</p>
     <h2>{esc(heading)}</h2>
@@ -457,33 +458,31 @@ def layout(site, page, pages, body, hero_image, year, extra_head=""):
 """
 
 
+def portrait_card(item, image, blurb, sizes):
+    return f"""
+<article class="portrait-card">
+  <a href="{esc(href(item["path"]))}">
+    {picture(image, sizes)}
+    <span class="portrait-shade" aria-hidden="true"></span>
+    <span class="portrait-copy">
+      <h3>{esc(item["nav"])}</h3>
+      <p>{esc(blurb)}</p>
+    </span>
+  </a>
+</article>
+"""
+
+
 def render_home(site, page, pages, images, reviews, marketing):
     hero = images[page["hero_image"]]
+    card_copy = marketing.get("cards", {})
     cards = []
     for item in pages:
         if item.get("template") != "service":
             continue
         photo = images[item.get("hero") or item["image"]]
-        eager = len(cards) < 3
-        cards.append(f"""
-<article class="service-card">
-  <a href="{esc(href(item["path"]))}">
-    {picture(photo, "(max-width: 700px) 100vw, 360px", eager=eager)}
-    <div>
-      <h3>{esc(item["nav"])}</h3>
-      <p>{esc(item["card"])}</p>
-      <span class="text-link">View service</span>
-    </div>
-  </a>
-</article>
-""")
-    trust_photos = ["pool-and-stucco-home", "labeled-breaker-panel", "kitchen-range-hood"]
-    trust = "\n".join(
-        "<li>"
-        + picture(images[photo_id], "(max-width: 700px) 100vw, 380px")
-        + f"<div><h3>{esc(item['title'])}</h3><p>{esc(item['text'])}</p></div></li>"
-        for item, photo_id in zip(page["trust"], trust_photos)
-    )
+        blurb = card_copy.get(item["id"], item["card"])
+        cards.append(portrait_card(item, photo, blurb, "(max-width: 700px) 78vw, 220px"))
     areas = "\n".join(f"<li>{esc(area)}</li>" for area in site["service_areas"])
     review_html = []
     for review in reviews:
@@ -509,56 +508,71 @@ def render_home(site, page, pages, images, reviews, marketing):
         for item in gallery_ids
     )
     hero_copy = marketing["hero"]
+    intro = marketing["services_intro"]
     home_inner = f"""
 <p class="eyebrow">{esc(hero_copy["eyebrow"])}</p>
 <h1>{esc(hero_copy["headline"])}</h1>
-<p class="tagline">“{esc(site["tagline"])}”</p>
 <p class="lede">{esc(hero_copy["support"])}</p>
 <div class="hero-actions">
-  <a class="button" href="tel:{esc(site["phone_tel"])}">{esc(hero_copy["call_label"])}</a>
-  <a class="button button-quiet" href="/contact/">{esc(hero_copy["quote_label"])}</a>
+  <a class="btn-slant btn-call" href="tel:{esc(site["phone_tel"])}">{esc(hero_copy["call_label"])}</a>
+  <a class="btn-slant btn-quote" href="/contact/">{esc(hero_copy["quote_label"])}</a>
 </div>
 """
-    body = f"""
-{photo_hero(hero, home_inner)}
-<section class="trust-bar" aria-label="Business facts">
-  <div class="wrap">
-    <ul>
-      <li>Licensed and insured</li>
-      <li>CSLB #{esc(site["license"].removeprefix("CSLB").lstrip("#"))}</li>
-      <li>Since {esc(site["established"])}</li>
-      <li>{esc(" · ".join(site["service_areas"]))}</li>
-      <li>{esc(" · ".join(site["payment_methods"]))}</li>
-    </ul>
+    frame = picture(
+        images["kitchen-tile-backsplash"],
+        "(max-width: 899px) 70vw, 320px",
+        priority="low",
+        class_name="stage-frame-img",
+    )
+    seal = f"""
+<div class="seal">
+  <div class="seal-face">
+    <p class="seal-kicker">Licensed and insured</p>
+    <p class="seal-year">Since {esc(site["established"])}</p>
+    <p class="seal-license">CSLB #{esc(license_number(site))}</p>
   </div>
-</section>
-<section class="section tight">
+</div>
+"""
+    icons = [
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 4 6v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V6l-8-4z"/></svg>',
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h2v2h6V2h2v2h3v18H4V4h3V2zm12 8H7v10h12V10z"/></svg>',
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 11H7v-2h4V6h2v7z"/></svg>',
+    ]
+    lines = "\n".join(
+        f"<li>{icon}<span>{esc(line)}</span></li>"
+        for icon, line in zip(icons, intro["lines"])
+    )
+    aside = f'<figure class="stage-frame">{frame}</figure>{seal}'
+    body = f"""
+{photo_hero(hero, home_inner, aside=aside, kind="home")}
+<section class="section band-white services-band">
   <div class="wrap">
-    <div class="section-head">
-      <h2>{esc(page["services_heading"])}</h2>
-      <p>{esc(page["services_intro"])}</p>
+    <div class="services-intro">
+      <div>
+        <p class="eyebrow">{esc(intro["eyebrow"])}</p>
+        <h2>{esc(intro["heading"])}</h2>
+      </div>
+      <div>
+        <p>{esc(intro["text"])}</p>
+        <ul class="trust-lines">{lines}</ul>
+      </div>
     </div>
-    <div class="service-grid">
+    <div class="portrait-row" tabindex="0" aria-label="Services">
       {"".join(cards)}
     </div>
   </div>
 </section>
 {why_section(marketing)}
 {process_section(marketing)}
-<section class="section tight">
+<section class="section band-white">
   <div class="wrap split">
     <div>
+      <p class="eyebrow">Our story</p>
       <h2>{esc(page["story_heading"])}</h2>
       {paragraphs(page["story"])}
       <p><a class="text-link" href="/about/">Read our story</a></p>
     </div>
     {picture(images["interior-slat-accent-wall"], "(max-width: 800px) 100vw, 560px")}
-  </div>
-</section>
-<section class="section tight">
-  <div class="wrap">
-    <h2>{esc(page["trust_heading"])}</h2>
-    <ul class="trust-grid">{trust}</ul>
   </div>
 </section>
 <section class="photo-band">
@@ -570,9 +584,10 @@ def render_home(site, page, pages, images, reviews, marketing):
     </div>
   </div>
 </section>
-<section class="section tight">
+<section class="section band-paper">
   <div class="wrap">
     <div class="section-head">
+      <p class="eyebrow">Reviews</p>
       <h2>What our customers say</h2>
       <p>Reviews from our Google customers. <a href="{esc(site["review_url"])}">Share your experience on Google</a></p>
     </div>
@@ -582,19 +597,21 @@ def render_home(site, page, pages, images, reviews, marketing):
   </div>
 </section>
 {faq_section(marketing["faq"]["items"], marketing["faq"]["eyebrow"], marketing["faq"]["heading"])}
-<section class="section tight">
+<section class="section band-white">
   <div class="wrap">
     <div class="section-head">
+      <p class="eyebrow">Gallery</p>
       <h2>Project photos</h2>
       <a class="text-link" href="/gallery/">View the gallery</a>
     </div>
     <ul class="thumb-grid">{thumbs}</ul>
   </div>
 </section>
-<section class="section tight" id="quote">
+<section class="section band-paper" id="quote">
   <div class="wrap split">
     {picture(images["kitchen-gray-cabinets-shelves"], "(max-width: 800px) 100vw, 520px")}
     <div>
+      <p class="eyebrow">Quote</p>
       <h2>Request a quote</h2>
       <p>Tell us about the electrical or remodeling work, or call <a href="tel:{esc(site["phone_tel"])}">{esc(site["phone_display"])}</a>.</p>
       {form(site, "/", "home-quote")}
@@ -605,15 +622,19 @@ def render_home(site, page, pages, images, reviews, marketing):
     return body
 
 
-def photo_hero(image, inner):
+def photo_hero(image, inner, aside="", kind="page"):
+    aside_html = f'<div class="stage-aside">{aside}</div>' if aside else ""
     return f"""
-<header class="photo-hero">
-  {picture(image, "100vw", eager=True, class_name="photo-hero-img")}
-  <div class="photo-hero-copy">
-    <div class="wrap">
+<header class="stage stage-{kind}">
+  {picture(image, "100vw", eager=True, class_name="stage-photo")}
+  <div class="stage-shade" aria-hidden="true"></div>
+  <div class="wrap stage-grid">
+    <div class="stage-copy">
       {inner}
     </div>
+    {aside_html}
   </div>
+  <div class="stage-slant" aria-hidden="true"></div>
 </header>
 """
 
@@ -635,11 +656,14 @@ def render_service(site, page, pages, images, marketing):
         item for item in pages
         if item.get("group") == page.get("group") and item["id"] != page["id"]
     ]
+    card_copy = marketing.get("cards", {})
     related_html = "\n".join(
-        f"""<article class="service-card"><a href="{esc(href(item["path"]))}">
-          {picture(images[item.get("hero") or item["image"]], "(max-width: 700px) 100vw, 280px")}
-          <div><h3>{esc(item["nav"])}</h3></div>
-        </a></article>"""
+        portrait_card(
+            item,
+            images[item.get("hero") or item["image"]],
+            card_copy.get(item["id"], item["card"]),
+            "(max-width: 700px) 78vw, 280px",
+        )
         for item in related
     )
     extra = marketing["services"].get(page["id"], {})
@@ -667,11 +691,13 @@ def render_service(site, page, pages, images, marketing):
 </figure>
 """
     inner = f"""
-<p class="eyebrow"><a href="/">Home</a> · {esc(page["group"].title())}</p>
+<p class="eyebrow"><a href="/">Home</a> <span aria-hidden="true">·</span> {esc(page["group"].title())}</p>
 <h1>{esc(page["h1"])}</h1>
-<p class="lede">{esc(page["lede"])}</p>
-<p class="hero-actions"><a class="button" href="tel:{esc(site["phone_tel"])}">Call {esc(site["phone_display"])}</a>
-<a class="button button-quiet" href="/contact/">Request a quote</a></p>
+<p class="lede">{esc(extra.get("hero_lede") or page["lede"])}</p>
+<div class="hero-actions">
+  <a class="btn-slant btn-call" href="tel:{esc(site["phone_tel"])}">Call {esc(site["phone_display"])}</a>
+  <a class="btn-slant btn-quote" href="/contact/">Get a quote</a>
+</div>
 """
     return f"""
 <article class="page">
@@ -687,9 +713,10 @@ def render_service(site, page, pages, images, marketing):
       {picture(photo, "(max-width: 800px) 100vw, 420px")}
     </aside>
   </div>
-  <div class="wrap related">
+    <div class="wrap related">
+    <p class="eyebrow">More services</p>
     <h2>Related services</h2>
-    <div class="service-grid">{related_html}</div>
+    <div class="portrait-row compact" tabindex="0" aria-label="Related services">{related_html}</div>
   </div>
   {process_section(marketing)}
   {service_faq}
@@ -706,8 +733,10 @@ def render_about(site, page, images, marketing):
 <p class="eyebrow">Established {esc(site["established"])} · License # {esc(site["license"])}</p>
 <h1>{esc(page["h1"])}</h1>
 <p class="lede">“{esc(site["tagline"])}”</p>
-<p class="hero-actions"><a class="button" href="tel:{esc(site["phone_tel"])}">Call {esc(site["phone_display"])}</a>
-<a class="button button-quiet" href="/contact/">Request a quote</a></p>
+<div class="hero-actions">
+  <a class="btn-slant btn-call" href="tel:{esc(site["phone_tel"])}">Call {esc(site["phone_display"])}</a>
+  <a class="btn-slant btn-quote" href="/contact/">Get a quote</a>
+</div>
 """
     return f"""
 <article class="page">
@@ -787,7 +816,7 @@ def render_contact(site, page, images):
     inner = f"""
 <h1>{esc(page["h1"])}</h1>
 <p class="lede">{esc(page["intro"])}</p>
-<p class="hero-actions"><a class="button" href="tel:{esc(site["phone_tel"])}">Call {esc(site["phone_display"])}</a></p>
+<div class="hero-actions"><a class="btn-slant btn-call" href="tel:{esc(site["phone_tel"])}">Call {esc(site["phone_display"])}</a></div>
 """
     return f"""
 <article class="page">

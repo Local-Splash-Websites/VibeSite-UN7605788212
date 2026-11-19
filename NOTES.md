@@ -2,29 +2,56 @@
 
 ## Round 3 new copy for client review
 
-New marketing copy lives in `content/marketing.json`. It does not add ratings, review counts, awards, warranties, financing, 24/7 service, response times, team size, or cities outside the profile list. Existing Google reviews are unchanged. Existing service paragraphs from the previous site were kept, including sentences that already mentioned electrical emergencies.
+New marketing copy lives in `content/marketing.json`. It does not add ratings, review counts, awards, warranties, financing, 24/7 service, response times, team size, or cities outside the profile list. Existing Google reviews are unchanged. Existing service-page paragraphs from the previous site were kept, including sentences that already mentioned electrical emergencies. The old homepage lines “Reliable Consistency,” “Customer Satisfaction,” and “Fast Responsiveness” were removed.
 
-Hero: “Electrical work and remodeling for homes in the valley.” Support: “MB Construction and Electric has helped homeowners since 1978. We are licensed and insured under CSLB #352894.”
+Hero eyebrow: “Electrician · General contractor · La Quinta.”
+Hero headline: “Electrical work and remodeling for the home you live in.”
+Hero lede: “Panels, lighting, kitchens, and baths. Licensed and insured since 1978.”
+Hero buttons: “Call (760) 227-5499” and “Get a quote.”
+Seal on the hero photo: “Licensed and insured / Since 1978 / CSLB #352894.”
+Top strip: “La Quinta, CA · (760) 227-5499 · CSLB #352894.”
+
+Services intro heading: “Electrical and remodeling for homes like yours.”
+Services intro: “A full panel, a circuit that keeps tripping, a kitchen that no longer works, a bathroom that has to be rebuilt. MB Construction and Electric takes the electrical work and the remodeling. Homeowners have called this company since 1978. The license is CSLB #352894, and the company is licensed and insured.”
+Trust lines under that intro: “Licensed and insured · CSLB #352894,” “Working since 1978,” “Monday–Friday, 8:00 a.m.–5:00 p.m.”
+
+Service card blurbs:
+- Residential Electrical: “Panel changes, service upgrades, lighting, ceiling fans, breakers, and circuit repair for the house.”
+- Electrical Installation: “New circuits, panel upgrades, fans, EV chargers, generators, and smoke detectors.”
+- Light Fixtures: “Install a new fixture, repair the one you have, or switch to energy-efficient lighting.”
+- Wall Fixtures: “Shelves, cabinets, mirrors, and artwork, mounted for the wall they are going on.”
+- Home Renovations: “Kitchens, bathrooms, additions, ADUs, and whole-house updates planned as one job.”
+- Kitchen and Bathroom Remodeling: “A kitchen or bathroom remodel, from the first plan through the finished room.”
+
+Service-page hero ledes (the long body copy under them is unchanged):
+- Residential: “Panel changes, lighting, ceiling fans, breakers, and circuit repair for the house you live in.”
+- Installation: “New circuits, panel upgrades, fans, EV chargers, generators, and detectors, installed by a licensed contractor.”
+- Light fixtures: “A new fixture, a repair, or a switch to energy-efficient lighting for a home or a business.”
+- Wall fixtures: “Shelves, cabinets, mirrors, and artwork, mounted for the way the wall is built.”
+- Home renovations: “Kitchens, bathrooms, additions, and whole-house updates, planned as one job.”
+- Kitchen and bathroom: “A kitchen or bathroom remodel, from the first idea through the finished room.”
 
 Why choose us:
-- Licensed and insured. California contractor license CSLB #352894. We are licensed and insured.
-- Working since 1978. Homeowners in La Quinta have called us for electrical work and remodeling since 1978.
-- Electrical and construction. Panels, lighting, wiring, kitchens, bathrooms, additions, and design-build work are all part of the same company.
-- Set hours you can plan around. The office is open Monday through Friday, 8:00 a.m. to 5:00 p.m. Saturday and Sunday are closed.
+- Licensed and insured. The published California contractor license is CSLB #352894. Electrical work and remodeling are done by a company that is licensed and insured.
+- Working since 1978. Homeowners in La Quinta have called MB Construction and Electric for electrical work and remodeling since 1978.
+- Electrical and the build. A circuit that trips, a panel with no open spaces, a kitchen that does not fit how you cook, a bath that needs new work. Those jobs stay with one company instead of two separate crews.
+- The work we list. Wiring, panels, lighting, ceiling fans, generators, EV chargers, kitchens, bathrooms, room and garage additions, ADUs, and design-build projects are on the published service list.
+- Hours you can plan around. The office is open Monday through Friday, 8:00 a.m. to 5:00 p.m. Saturday and Sunday are closed, so a visit is set on a weekday.
+- A clear way to start. Call (760) 227-5499 or send the quote form. Share the address and whether the job is electrical, a remodel, or both.
 
 How it works:
-1. Call or send a note. Phone (760) 227-5499 or use the quote form.
-2. Describe the project. Share whether you need electrical work, a remodel, or both, and where the property is.
+1. Call or send a note. Phone (760) 227-5499 or use the quote form. Leave your name and the best way to reach you.
+2. Describe the project. Say whether you need electrical work, a remodel, or both, and which city the property is in.
 3. Pick a weekday time. Visits are scheduled Monday through Friday between 8:00 a.m. and 5:00 p.m.
 4. Complete the agreed work. We do the electrical or construction work we discussed, with safety in mind on every job.
 
 Safety line on electrical pages: “Safety is not a matter we take lightly. Electrical repairs, panels, circuits, and lighting are handled by a licensed contractor, CSLB #352894.”
 
-FAQ: licensed (CSLB #352894), hours, the profile service-area list, the published electrical and construction services, how to request a quote, and payment methods (cash, money transfers, Zelle, check).
+FAQ: licensed (CSLB #352894); weekday hours; weekends closed; the profile city list; electrical and remodeling in one company; the published electrical list (panels, lighting, fans, breakers, water heaters, circuits, EV chargers, generators, detectors); kitchen and bathroom remodeling; what to say when you call; how to ask for a quote; payment methods (cash, money transfers, Zelle, check).
 
-Call-to-action band: “Talk through the next project. Call (760) 227-5499 Monday through Friday, 8:00 a.m. to 5:00 p.m., or send a quote request.”
+Call-to-action band: “Talk through the next project. Call (760) 227-5499 Monday through Friday, 8:00 a.m. to 5:00 p.m., or send a quote request.” Buttons: “Call (760) 227-5499” and “Get a quote.”
 
-Per-service benefit lists repeat work already published on those pages (panels, circuits, lighting, fans, EV chargers, generators, detectors, fixtures, wall fixtures, kitchens, bathrooms, and whole-house updates). Each service page also has one or two questions that point back to that same list.
+Per-service benefit lists repeat work already published on those pages. Each service page also has one or two questions that point back to that same list.
 
 ## Round 2 photos
 

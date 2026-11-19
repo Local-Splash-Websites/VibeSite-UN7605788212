@@ -3,6 +3,7 @@
 
 import html
 import json
+import re
 import shutil
 from datetime import date
 from pathlib import Path
@@ -26,6 +27,28 @@ def esc(value):
 
 def paragraphs(items):
     return "\n".join(f"<p>{esc(text)}</p>" for text in items or [])
+
+
+def lede_html(text):
+    parts = [part.strip() for part in re.split(r"(?<=[.!?])\s+(?=[A-Z])", str(text).strip()) if part.strip()]
+    if len(parts) < 2:
+        return f'<p class="lede">{esc(text)}</p>'
+    lines = "\n".join(f'<span class="lede-line">{esc(part)}</span>' for part in parts)
+    return f'<p class="lede">{lines}</p>'
+
+
+def area_slug(name):
+    return name.lower().replace(" ", "-")
+
+
+def area_node(name):
+    if str(name).endswith("County"):
+        return {"@type": "AdministrativeArea", "name": name}
+    return {
+        "@type": "City",
+        "name": name,
+        "containedInPlace": {"@type": "State", "name": "California"},
+    }
 
 
 def bullets(items):
@@ -79,19 +102,16 @@ def canonical(site, path):
     return host + href(path)
 
 
-def json_ld(site, page, image):
+def json_ld(site, page, image, focus=None):
     host = site["canonical_host"].rstrip("/")
     address = site["address"]
-    areas = []
-    for name in site["service_areas"]:
-        if name.endswith("County"):
-            areas.append({"@type": "AdministrativeArea", "name": name})
-        else:
-            areas.append({
-                "@type": "City",
-                "name": name,
-                "containedInPlace": {"@type": "State", "name": "California"},
-            })
+    areas = [area_node(name) for name in site["service_areas"]]
+    if isinstance(focus, str) and focus != "*":
+        service_areas = [area_node(focus)]
+        service_name = f"Electrical and general contracting in {focus}"
+    else:
+        service_areas = areas
+        service_name = "Electrical and general contracting"
     hours = []
     for row in site["hours"]:
         hours.append({
@@ -141,7 +161,24 @@ def json_ld(site, page, image):
         "sameAs": site["same_as"],
     }
     data.pop("priceRange", None)
-    return json.dumps(data, ensure_ascii=False, indent=2)
+    if focus is None:
+        return json.dumps(data, ensure_ascii=False, indent=2)
+    page_url = canonical(site, page["path"])
+    data.pop("@context", None)
+    service = {
+        "@type": "Service",
+        "@id": page_url + "#service",
+        "name": service_name,
+        "serviceType": ["Electrical service", "General contracting"],
+        "areaServed": service_areas,
+        "provider": {"@id": host + "/#business"},
+        "url": page_url,
+    }
+    return json.dumps(
+        {"@context": "https://schema.org", "@graph": [data, service]},
+        ensure_ascii=False,
+        indent=2,
+    )
 
 
 def hours_list(site):
@@ -173,29 +210,49 @@ def nav(site, pages, current_path):
         current = ' aria-current="page"' if path == current_path else ""
         return f'<a href="{esc(href(path))}"{current}>{esc(label)}</a>'
 
-    def group(label, items):
-        links = "\n".join(f"<li>{link(item['path'], item['nav'])}</li>" for item in items)
-        return (
-            f'<li class="nav-group"><details>'
-            f"<summary>{esc(label)}</summary><ul>{links}</ul></details></li>"
+    def group(label, control_id, items):
+        child_current = any(item["path"] == current_path for item in items)
+        current_attr = ' aria-current="true"' if child_current else ""
+        item_class = "nav-drop is-current" if child_current else "nav-drop"
+        links = "\n".join(
+            f"<li>{link(item['path'], item['label'])}</li>" for item in items
         )
+        return f"""
+<li class="{item_class}">
+  <button type="button" class="nav-drop-btn" aria-expanded="false" aria-controls="{control_id}"{current_attr}>
+    <span class="nav-label">{esc(label)}</span>
+    <span class="nav-caret" aria-hidden="true"></span>
+  </button>
+  <ul id="{control_id}" class="nav-sub">
+    {links}
+  </ul>
+</li>
+"""
 
     home_current = ' aria-current="page"' if current_path == "/" else ""
     about = next(p for p in pages if p["id"] == "about")
     gallery = next(p for p in pages if p["id"] == "gallery")
     contact = next(p for p in pages if p["id"] == "contact")
+    electrical_items = [{"path": item["path"], "label": item["nav"]} for item in electrical]
+    construction_items = [{"path": item["path"], "label": item["nav"]} for item in construction]
+    area_items = [{"path": "/service-areas", "label": "All service areas"}]
+    for name in site["service_areas"]:
+        area_items.append({"path": f"/service-areas/{area_slug(name)}", "label": name})
     return f"""
 <nav class="site-nav" aria-label="Primary">
-  <input class="nav-check" id="nav-check" type="checkbox">
-  <label class="nav-toggle" for="nav-check">Menu</label>
-  <ul class="nav-links" id="nav-links">
-    <li><a href="/"{home_current}>Home</a></li>
-    {group("Electrical", electrical)}
-    {group("Construction", construction)}
-    <li>{link(about["path"], "About")}</li>
-    <li>{link(gallery["path"], "Gallery")}</li>
-    <li>{link(contact["path"], "Contact")}</li>
-  </ul>
+  <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-panel">Menu</button>
+  <div id="nav-panel" class="nav-panel">
+    <a class="panel-call" href="tel:{esc(site["phone_tel"])}">Call {esc(site["phone_display"])}</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/"{home_current}>Home</a></li>
+      {group("Electrical", "nav-electrical", electrical_items)}
+      {group("Construction", "nav-construction", construction_items)}
+      {group("Service Areas", "nav-areas", area_items)}
+      <li>{link(about["path"], "About")}</li>
+      <li>{link(gallery["path"], "Gallery")}</li>
+      <li>{link(contact["path"], "Contact")}</li>
+    </ul>
+  </div>
 </nav>
 """
 
@@ -240,6 +297,7 @@ def footer(site, pages, year):
     simple = [
         ("/", "Home"),
         ("/about", "About"),
+        ("/service-areas", "Service Areas"),
         ("/gallery", "Gallery"),
         ("/contact", "Contact"),
         ("/privacy-policy", "Privacy Policy"),
@@ -251,7 +309,10 @@ def footer(site, pages, year):
     service_links = "\n".join(
         f'<li><a href="{esc(href(page["path"]))}">{esc(page["nav"])}</a></li>' for page in services
     )
-    areas = ", ".join(esc(area) for area in site["service_areas"])
+    areas = "\n".join(
+        f'<li><a href="/service-areas/{esc(area_slug(name))}/">{esc(name)}</a></li>'
+        for name in site["service_areas"]
+    )
     address = site["address"]
     social = site["social"]
     return f"""
@@ -284,7 +345,9 @@ def footer(site, pages, year):
     <section>
       <h2>Hours of operation</h2>
       {hours_list(site)}
-      <p class="areas"><span class="label">Service area.</span> {areas}.</p>
+      <p class="areas"><span class="label">Service area.</span></p>
+      <ul class="area-links">{areas}</ul>
+      <p><a href="/service-areas/">All service areas</a></p>
     </section>
   </div>
   <div class="wrap legal">
@@ -332,14 +395,19 @@ def form(site, page_path, form_name):
 """
 
 
-def cta(site, marketing):
+def cta(site, marketing, place=""):
     block = marketing["cta"]
+    heading = block["heading"] if not place else f"Talk through a project in {place}"
+    text = block["text"] if not place else (
+        f"Call {site['phone_display']} Monday through Friday, 8:00 a.m. to 5:00 p.m., "
+        f"or send a quote request for work in {place}."
+    )
     return f"""
 <aside class="cta-band">
   <div class="wrap cta-inner">
     <div>
-      <h2>{esc(block["heading"])}</h2>
-      <p>{esc(block["text"])}</p>
+      <h2>{esc(heading)}</h2>
+      <p>{esc(text)}</p>
     </div>
     <div class="cta-actions">
       <a class="btn-slant btn-call" href="tel:{esc(site["phone_tel"])}">{esc(block["call_label"])}</a>
@@ -386,7 +454,7 @@ def process_section(marketing):
 
 def faq_section(items, eyebrow, heading):
     rows = "\n".join(
-        f"<details><summary>{esc(item['q'])}</summary><p>{esc(item['a'])}</p></details>"
+        f'<details name="faq"><summary>{esc(item["q"])}</summary><p>{esc(item["a"])}</p></details>'
         for item in items
     )
     return f"""
@@ -412,12 +480,12 @@ def preload_image(image, sizes):
     )
 
 
-def layout(site, page, pages, body, hero_image, year, extra_head=""):
+def layout(site, page, pages, body, hero_image, year, extra_head="", focus=None):
     title = page["title"]
     description = page["description"]
     url = canonical(site, page["path"])
     og_image = site["canonical_host"].rstrip("/") + "/assets/images/" + hero_image["variants"][-1]["file"]
-    ld = json_ld(site, page, hero_image)
+    ld = json_ld(site, page, hero_image, focus=focus)
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -483,7 +551,11 @@ def render_home(site, page, pages, images, reviews, marketing):
         photo = images[item.get("hero") or item["image"]]
         blurb = card_copy.get(item["id"], item["card"])
         cards.append(portrait_card(item, photo, blurb, "(max-width: 700px) 78vw, 220px"))
-    areas = "\n".join(f"<li>{esc(area)}</li>" for area in site["service_areas"])
+    areas = "\n".join(
+        f'<li><a href="/service-areas/{esc(area_slug(name))}/">{esc(name)}</a></li>'
+        for name in site["service_areas"]
+    )
+    areas += '\n<li><a href="/service-areas/">All service areas</a></li>'
     review_html = []
     for review in reviews:
         review_html.append(f"""
@@ -512,7 +584,7 @@ def render_home(site, page, pages, images, reviews, marketing):
     home_inner = f"""
 <p class="eyebrow">{esc(hero_copy["eyebrow"])}</p>
 <h1>{esc(hero_copy["headline"])}</h1>
-<p class="lede">{esc(hero_copy["support"])}</p>
+{lede_html(hero_copy["support"])}
 <div class="hero-actions">
   <a class="btn-slant btn-call" href="tel:{esc(site["phone_tel"])}">{esc(hero_copy["call_label"])}</a>
   <a class="btn-slant btn-quote" href="/contact/">{esc(hero_copy["quote_label"])}</a>
@@ -693,7 +765,7 @@ def render_service(site, page, pages, images, marketing):
     inner = f"""
 <p class="eyebrow"><a href="/">Home</a> <span aria-hidden="true">·</span> {esc(page["group"].title())}</p>
 <h1>{esc(page["h1"])}</h1>
-<p class="lede">{esc(extra.get("hero_lede") or page["lede"])}</p>
+{lede_html(extra.get("hero_lede") or page["lede"])}
 <div class="hero-actions">
   <a class="btn-slant btn-call" href="tel:{esc(site["phone_tel"])}">Call {esc(site["phone_display"])}</a>
   <a class="btn-slant btn-quote" href="/contact/">Get a quote</a>
@@ -732,7 +804,7 @@ def render_about(site, page, images, marketing):
     inner = f"""
 <p class="eyebrow">Established {esc(site["established"])} · License # {esc(site["license"])}</p>
 <h1>{esc(page["h1"])}</h1>
-<p class="lede">“{esc(site["tagline"])}”</p>
+{lede_html("“" + site["tagline"] + "”")}
 <div class="hero-actions">
   <a class="btn-slant btn-call" href="tel:{esc(site["phone_tel"])}">Call {esc(site["phone_display"])}</a>
   <a class="btn-slant btn-quote" href="/contact/">Get a quote</a>
@@ -796,7 +868,7 @@ def render_gallery(page, images):
 """)
     inner = f"""
 <h1>{esc(page["h1"])}</h1>
-<p class="lede">{esc(page["intro"])}</p>
+{lede_html(page["intro"])}
 """
     return f"""
 <article class="page">
@@ -811,11 +883,14 @@ def render_gallery(page, images):
 def render_contact(site, page, images):
     address = site["address"]
     payments = ", ".join(esc(item) for item in site["payment_methods"])
-    areas = "\n".join(f"<li>{esc(area)}</li>" for area in site["service_areas"])
+    areas = "\n".join(
+        f'<li><a href="/service-areas/{esc(area_slug(name))}/">{esc(name)}</a></li>'
+        for name in site["service_areas"]
+    )
     hero = images[page.get("hero") or "desert-home-tile-roof"]
     inner = f"""
 <h1>{esc(page["h1"])}</h1>
-<p class="lede">{esc(page["intro"])}</p>
+{lede_html(page["intro"])}
 <div class="hero-actions"><a class="btn-slant btn-call" href="tel:{esc(site["phone_tel"])}">Call {esc(site["phone_display"])}</a></div>
 """
     return f"""
@@ -916,6 +991,97 @@ def output_path(public, url_path):
     return public / url_path.lstrip("/") / "index.html"
 
 
+def service_link_list(pages):
+    items = [page for page in pages if page.get("template") == "service"]
+    return "\n".join(
+        f'<li><a href="{esc(href(page["path"]))}">{esc(page["nav"])}</a></li>' for page in items
+    )
+
+
+def nearby_links(names):
+    return "\n".join(
+        f'<li><a href="/service-areas/{esc(area_slug(name))}/">{esc(name)}</a></li>'
+        for name in names
+    )
+
+
+def render_area_index(site, areas, images, marketing):
+    index = areas["index"]
+    hero = images[index["hero"]]
+    cards = []
+    for city in areas["cities"]:
+        photo = images[city["hero"]]
+        cards.append(f"""
+<li>
+  <a href="/service-areas/{esc(city["slug"])}/">
+    {picture(photo, "(max-width: 700px) 100vw, 280px")}
+    <div>
+      <h2>{esc(city["name"])}</h2>
+      <p>{esc(city["blurb"])}</p>
+    </div>
+  </a>
+</li>
+""")
+    inner = f"""
+<p class="eyebrow">Where we work</p>
+<h1>{esc(index["h1"])}</h1>
+{lede_html(index["lede"])}
+<div class="hero-actions">
+  <a class="btn-slant btn-call" href="tel:{esc(site["phone_tel"])}">Call {esc(site["phone_display"])}</a>
+  <a class="btn-slant btn-quote" href="/contact/">Get a quote</a>
+</div>
+"""
+    return f"""
+<article class="page">
+  {photo_hero(hero, inner)}
+  <div class="wrap prose">
+    {paragraphs(index["paragraphs"])}
+    <ul class="area-index">{"".join(cards)}</ul>
+  </div>
+  {faq_section(index["faq"], "Questions", "Questions about the service area")}
+</article>
+{cta(site, marketing)}
+"""
+
+
+def render_city(site, city, pages, images, marketing):
+    hero = images[city["hero"]]
+    side = images[city["side"]]
+    inner = f"""
+<p class="eyebrow"><a href="/service-areas/">Service areas</a> <span aria-hidden="true">·</span> {esc(city["name"])}</p>
+<h1>{esc(city["h1"])}</h1>
+{lede_html(city["lede"])}
+<div class="hero-actions">
+  <a class="btn-slant btn-call" href="tel:{esc(site["phone_tel"])}">Call {esc(site["phone_display"])}</a>
+  <a class="btn-slant btn-quote" href="/contact/">Get a quote</a>
+</div>
+"""
+    return f"""
+<article class="page">
+  {photo_hero(hero, inner)}
+  <div class="wrap page-grid">
+    <div class="prose">
+      {paragraphs(city["paragraphs"])}
+      <h2>Services in {esc(city["name"])}</h2>
+      <p>{esc(city["services_intro"])}</p>
+      <ul>
+        {service_link_list(pages)}
+      </ul>
+    </div>
+    <aside class="page-photo">
+      {picture(side, "(max-width: 800px) 100vw, 420px")}
+    </aside>
+  </div>
+  <div class="wrap nearby-areas">
+    <h2>Nearby areas</h2>
+    <ul class="area-list">{nearby_links(city["nearby"])}</ul>
+  </div>
+  {faq_section(city["faq"], "Local questions", f"Questions about work in {city['name']}")}
+</article>
+{cta(site, marketing, city["name"])}
+"""
+
+
 def sitemap(site, pages):
     host = site["canonical_host"].rstrip("/")
     today = date.today().isoformat()
@@ -945,9 +1111,31 @@ def main():
     reviews = load_json(CONTENT / "reviews.json")
     privacy = load_json(CONTENT / "privacy.json")
     marketing = load_json(CONTENT / "marketing.json")
+    areas = load_json(CONTENT / "areas.json")
     images = image_lookup(load_json(CONTENT / "images.json"))
     pages = content["pages"]
     home = content["home"]
+    city_names = [city["name"] for city in areas["cities"]]
+    if city_names != site["service_areas"]:
+        raise SystemExit("Service area pages do not match the profile list")
+    for city in areas["cities"]:
+        if area_slug(city["name"]) != city["slug"]:
+            raise SystemExit(f"Slug mismatch for {city['name']}")
+        count = len(re.findall(r"[A-Za-z0-9']+", " ".join(city["paragraphs"])))
+        if not 300 <= count <= 450:
+            raise SystemExit(f"{city['name']} copy is {count} words")
+        if city["hero"] not in images or city["side"] not in images:
+            raise SystemExit(f"Missing image for {city['name']}")
+    shared = {}
+    for city in areas["cities"]:
+        for sentence in re.split(r"(?<=[.!?])\s+", " ".join(city["paragraphs"])):
+            sentence = sentence.strip()
+            if len(sentence) < 40:
+                continue
+            shared.setdefault(sentence, set()).add(city["name"])
+    repeated = [names for names in shared.values() if len(names) > 1]
+    if repeated:
+        raise SystemExit("City pages repeat the same sentence")
     year = date.today().year
 
     if PUBLIC.exists():
@@ -993,10 +1181,52 @@ def main():
         meta = {"path": page["path"], "title": page["title"], "description": page["description"]}
         write_page(output_path(PUBLIC, page["path"]), layout(site, meta, pages, body, hero_image, year))
 
+    index_meta = {
+        "path": "/service-areas",
+        "title": areas["index"]["title"],
+        "description": areas["index"]["description"],
+    }
+    index_hero = images[areas["index"]["hero"]]
+    write_page(
+        output_path(PUBLIC, "/service-areas"),
+        layout(
+            site,
+            index_meta,
+            pages,
+            render_area_index(site, areas, images, marketing),
+            index_hero,
+            year,
+            extra_head=preload_image(index_hero, "100vw"),
+            focus="*",
+        ),
+    )
+    area_pages = [index_meta]
+    for city in areas["cities"]:
+        city_meta = {
+            "path": f"/service-areas/{city['slug']}",
+            "title": city["title"],
+            "description": city["description"],
+        }
+        city_hero = images[city["hero"]]
+        write_page(
+            output_path(PUBLIC, city_meta["path"]),
+            layout(
+                site,
+                city_meta,
+                pages,
+                render_city(site, city, pages, images, marketing),
+                city_hero,
+                year,
+                extra_head=preload_image(city_hero, "100vw"),
+                focus=city["name"],
+            ),
+        )
+        area_pages.append(city_meta)
+
     missing, missing_body = render_not_found(site)
     write_page(PUBLIC / "404.html", layout(site, missing, pages, missing_body, hero, year))
 
-    (PUBLIC / "sitemap.xml").write_text(sitemap(site, [home_page] + pages), encoding="utf-8")
+    (PUBLIC / "sitemap.xml").write_text(sitemap(site, [home_page] + pages + area_pages), encoding="utf-8")
     (PUBLIC / "robots.txt").write_text(robots(site), encoding="utf-8")
 
     forbidden = "578-8212"

@@ -455,7 +455,7 @@ def render_home(site, page, pages, images, reviews):
   <div class="wrap">
     <ul>
       <li>Licensed and insured</li>
-      <li>CSLB #{esc(site["license"])}</li>
+      <li>CSLB #{esc(site["license"].removeprefix("CSLB").lstrip("#"))}</li>
       <li>Since {esc(site["established"])}</li>
       <li>{esc(" · ".join(site["service_areas"]))}</li>
       <li>{esc(" · ".join(site["payment_methods"]))}</li>
@@ -502,7 +502,7 @@ def render_home(site, page, pages, images, reviews):
   <div class="wrap">
     <div class="section-head">
       <h2>What our customers say</h2>
-      <p>Google reviews from the previous website. <a href="{esc(site["review_url"])}">Share your experience on Google</a></p>
+      <p>Reviews from our Google customers. <a href="{esc(site["review_url"])}">Share your experience on Google</a></p>
     </div>
     <div class="reviews">
       {"".join(review_html)}

@@ -1,0 +1,585 @@
+[
+  {
+    "id": "desert-home-tile-roof",
+    "alt": "Single-story desert home with a clay tile roof, palm trees, and mountains, seen from the street.",
+    "role": "hero",
+    "original_width": 1460,
+    "original_height": 1031,
+    "variants": [
+      {
+        "file": "desert-home-tile-roof-1600.webp",
+        "width": 1460,
+        "height": 1031
+      },
+      {
+        "file": "desert-home-tile-roof-1200.webp",
+        "width": 1200,
+        "height": 847
+      },
+      {
+        "file": "desert-home-tile-roof-800.webp",
+        "width": 800,
+        "height": 565
+      }
+    ],
+    "source": "client-upload/client-13_dbae.jpg",
+    "sha256": "1ab89dc091bee69930d37ee4c17c9442b9e29b208e9fc91ac405db7fb56c5af5",
+    "uncropped": false
+  },
+  {
+    "id": "desert-home-arched-gate",
+    "alt": "Stucco courtyard wall with a blue arched gate, wall lanterns, palm trees, and a mountain behind the home.",
+    "role": "content",
+    "original_width": 1561,
+    "original_height": 1241,
+    "variants": [
+      {
+        "file": "desert-home-arched-gate-1200.webp",
+        "width": 1200,
+        "height": 954
+      },
+      {
+        "file": "desert-home-arched-gate-800.webp",
+        "width": 800,
+        "height": 636
+      }
+    ],
+    "source": "https://irp.cdn-website.com/394d9953/dms3rep/multi/opt/3B6797E9-F817-4B5F-BE42-2342BB361561_1_201_a-83aac07b-2880w.jpeg",
+    "sha256": "fee7141f32e3e9620f42ab8b9de4ccee64cb44a2e3ead16d4ab106d3275681de"
+  },
+  {
+    "id": "desert-home-gate-drive",
+    "alt": "Stucco entry wall with a blue arched gate, wall lanterns, palms, and mountains behind the house.",
+    "role": "content",
+    "original_width": 636,
+    "original_height": 426,
+    "variants": [
+      {
+        "file": "desert-home-gate-drive.webp",
+        "width": 636,
+        "height": 426
+      }
+    ],
+    "source": "client-upload/client-08_572e.jpg",
+    "sha256": "3097e7191058fae5d810e8ba5a4ec3ddb1e3530c111a0e0f205cd8f53143f4b9",
+    "uncropped": false
+  },
+  {
+    "id": "covered-entry-columns",
+    "alt": "Front elevation of a desert home with a clay tile roof, round columns, dark wood doors, and palms.",
+    "role": "content",
+    "original_width": 1459,
+    "original_height": 1097,
+    "variants": [
+      {
+        "file": "covered-entry-columns-1600.webp",
+        "width": 1459,
+        "height": 1097
+      },
+      {
+        "file": "covered-entry-columns-1200.webp",
+        "width": 1200,
+        "height": 902
+      },
+      {
+        "file": "covered-entry-columns-800.webp",
+        "width": 800,
+        "height": 602
+      }
+    ],
+    "source": "client-upload/client-09_7e99.jpg",
+    "sha256": "2fc76a62292e7c9127787e0874ba45af09cf966972afc6bf0a0ace5e1d8997fa",
+    "uncropped": false
+  },
+  {
+    "id": "pool-and-stucco-home",
+    "alt": "Swimming pool in front of a Spanish-style stucco home with a clay tile roof, columns, and palm trees.",
+    "role": "content",
+    "original_width": 607,
+    "original_height": 468,
+    "variants": [
+      {
+        "file": "pool-and-stucco-home.webp",
+        "width": 607,
+        "height": 468
+      }
+    ],
+    "source": "client-upload/client-07_b115.jpg",
+    "sha256": "824368a72dc2f449d01b1a070c41524469e158f4bf924c3a71a41844085e8c64",
+    "uncropped": false
+  },
+  {
+    "id": "pool-patio-watermark",
+    "alt": "Pool and patio of a stucco home with lounge chairs, palms, and an MB Construction watermark in the corner.",
+    "role": "content",
+    "original_width": 1911,
+    "original_height": 1386,
+    "variants": [
+      {
+        "file": "pool-patio-watermark-1200.webp",
+        "width": 1200,
+        "height": 870
+      },
+      {
+        "file": "pool-patio-watermark-800.webp",
+        "width": 800,
+        "height": 580
+      }
+    ],
+    "source": "https://irp.cdn-website.com/394d9953/dms3rep/multi/opt/EDA2538B-2F39-4331-84D2-080569DC2E19_1_201_a-2880w.jpeg",
+    "sha256": "65db626dd4185aaf54d49f3e3d102b57554d058630e0086fe6f6bcac1110cb00"
+  },
+  {
+    "id": "modern-courtyard-dusk",
+    "alt": "Modern home at dusk with a glass corner opening onto a courtyard and a freestanding tub visible inside.",
+    "role": "content",
+    "original_width": 550,
+    "original_height": 450,
+    "variants": [
+      {
+        "file": "modern-courtyard-dusk.webp",
+        "width": 550,
+        "height": 450
+      }
+    ],
+    "source": "https://irp.cdn-website.com/394d9953/dms3rep/multi/opt/bae0681b-0260-4d6d-9ac7-3c0c135bd53a-f53b83b8-2880w.jpg",
+    "sha256": "d83f06a569ab9ebb8e439863260d2c7d8fa936547ece007dfce46853dcea71d8"
+  },
+  {
+    "id": "modern-courtyard-blue-doors",
+    "alt": "Mid-century courtyard at dusk with dark vertical siding, a sliding glass door, and pale blue double doors.",
+    "role": "content",
+    "original_width": 1000,
+    "original_height": 699,
+    "variants": [
+      {
+        "file": "modern-courtyard-blue-doors-1600.webp",
+        "width": 1000,
+        "height": 699
+      },
+      {
+        "file": "modern-courtyard-blue-doors-800.webp",
+        "width": 800,
+        "height": 559
+      }
+    ],
+    "source": "client-upload/client-16_3685.jpg",
+    "sha256": "c10c5e37f0f9f7c17ce2d4e2db73e640e7b55066989cdce0a44ca52478e8d4d1",
+    "uncropped": false
+  },
+  {
+    "id": "interior-slat-accent-wall",
+    "alt": "Finished interior with polished concrete floors, a dark vertical-slat wall, and recessed ceiling lights.",
+    "role": "content",
+    "original_width": 1000,
+    "original_height": 668,
+    "variants": [
+      {
+        "file": "interior-slat-accent-wall.webp",
+        "width": 800,
+        "height": 534
+      }
+    ],
+    "source": "client-upload/client-15_d9ee.jpg",
+    "sha256": "6ed25e405c11fb5fa375f2152d9ec91b9e38da1f7c96f101f3ffa2374b1155e6",
+    "uncropped": false
+  },
+  {
+    "id": "open-living-room-kitchen",
+    "alt": "Open living room with polished concrete floors, a pass-through kitchen, and a dark slat wall.",
+    "role": "content",
+    "original_width": 728,
+    "original_height": 450,
+    "variants": [
+      {
+        "file": "open-living-room-kitchen.webp",
+        "width": 728,
+        "height": 450
+      }
+    ],
+    "source": "https://irp.cdn-website.com/394d9953/dms3rep/multi/opt/c97b8a6b-0c3e-4560-8987-4e5b783658a7-835df828-2880w.jpg",
+    "sha256": "c1fa58af9a818a766a3b55484927bdf3332a2044b04870eb003f8f794e872b6f"
+  },
+  {
+    "id": "kitchen-pass-through-chandelier",
+    "alt": "Open living space with polished concrete floors, a brass globe chandelier, and a pass-through kitchen with a black backsplash.",
+    "role": "content",
+    "original_width": 1000,
+    "original_height": 669,
+    "variants": [
+      {
+        "file": "kitchen-pass-through-chandelier.webp",
+        "width": 800,
+        "height": 535
+      }
+    ],
+    "source": "client-upload/client-01_6fd1.jpg",
+    "sha256": "422a1782808c184054a8ed5bc78a0ee3299f3488d4e3f5e91c85aebfe6731a5c",
+    "uncropped": false
+  },
+  {
+    "id": "kitchen-gray-cabinets-shelves",
+    "alt": "Kitchen with dark grey cabinets, a light stone island, and walnut floating shelves lit from above.",
+    "role": "content",
+    "original_width": 1000,
+    "original_height": 750,
+    "variants": [
+      {
+        "file": "kitchen-gray-cabinets-shelves.webp",
+        "width": 800,
+        "height": 600
+      }
+    ],
+    "source": "client-upload/client-03_6a5c.jpg",
+    "sha256": "7d52a108b024edc824bc059873f8e15fb81afa0de066b389143b83b10dd626f2",
+    "uncropped": false
+  },
+  {
+    "id": "kitchen-range-hood",
+    "alt": "Kitchen with grey cabinets, a stainless range hood, walnut shelves with under-shelf lighting, and recessed ceiling lights.",
+    "role": "content",
+    "original_width": 1000,
+    "original_height": 750,
+    "variants": [
+      {
+        "file": "kitchen-range-hood.webp",
+        "width": 800,
+        "height": 600
+      }
+    ],
+    "source": "client-upload/client-14_bfe4.jpg",
+    "sha256": "d6ea5a5eb48385959d2cfd772b96ce3401ed8d5f40e7788ae60bfcc90b137b88",
+    "uncropped": false
+  },
+  {
+    "id": "kitchen-tile-backsplash",
+    "alt": "Kitchenette with grey cabinets, a white stacked-tile backsplash, open wood shelves, and recessed lights.",
+    "role": "content",
+    "original_width": 4032,
+    "original_height": 3024,
+    "variants": [
+      {
+        "file": "kitchen-tile-backsplash-1600.webp",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "file": "kitchen-tile-backsplash-1200.webp",
+        "width": 1200,
+        "height": 900
+      },
+      {
+        "file": "kitchen-tile-backsplash-800.webp",
+        "width": 800,
+        "height": 600
+      }
+    ],
+    "source": "client-upload/client-20_826a.jpg",
+    "sha256": "286682271cc0fcc17fc05fd09ee5a64dcde7cb982b94d853428674163094331b",
+    "uncropped": false
+  },
+  {
+    "id": "kitchen-remodel-in-progress",
+    "alt": "Kitchen remodel with white subway tile, wood cabinets, and two globe pendant lights over the island.",
+    "role": "content",
+    "original_width": 4032,
+    "original_height": 3024,
+    "variants": [
+      {
+        "file": "kitchen-remodel-in-progress-1600.webp",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "file": "kitchen-remodel-in-progress-1200.webp",
+        "width": 1200,
+        "height": 900
+      },
+      {
+        "file": "kitchen-remodel-in-progress-800.webp",
+        "width": 800,
+        "height": 600
+      }
+    ],
+    "source": "client-upload/client-12_9c4d.jpg",
+    "sha256": "7458230ca95fdc5a9a6b769870d85d7fa1f8616a1aadb4d5da706b6af4a5109e",
+    "uncropped": false
+  },
+  {
+    "id": "bathroom-freestanding-tub",
+    "alt": "Bathroom with a white freestanding tub, a slim pendant light, and a glass wall opening to a patio.",
+    "role": "content",
+    "original_width": 456,
+    "original_height": 490,
+    "variants": [
+      {
+        "file": "bathroom-freestanding-tub.webp",
+        "width": 456,
+        "height": 490
+      }
+    ],
+    "source": "client-upload/client-18_8802.jpg",
+    "sha256": "5d002f553eb190925e7ced0a5cbc53f7acf43c758048b2d6f63e58d496aa40d3",
+    "uncropped": false
+  },
+  {
+    "id": "branch-chandelier-dining",
+    "alt": "Branch-style chandelier with small glowing bulbs over a round marble dining table.",
+    "role": "content",
+    "original_width": 1920,
+    "original_height": 2560,
+    "variants": [
+      {
+        "file": "branch-chandelier-dining-1200.webp",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "file": "branch-chandelier-dining-800.webp",
+        "width": 800,
+        "height": 1067
+      }
+    ],
+    "source": "https://irp.cdn-website.com/394d9953/dms3rep/multi/opt/f1515bcc-7f94-4af7-a0ec-0bdd1988376f_img_4570-6157e057-2880w.jpeg",
+    "sha256": "0ffdf00f142651b3842b399dffe341ab8a034883d4bd076997e3ffc819782cd5"
+  },
+  {
+    "id": "black-ceiling-fan",
+    "alt": "Black three-blade ceiling fan with a light kit, installed on a white ceiling beside a sliding door.",
+    "role": "content",
+    "original_width": 4032,
+    "original_height": 3024,
+    "variants": [
+      {
+        "file": "black-ceiling-fan-1600.webp",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "file": "black-ceiling-fan-1200.webp",
+        "width": 1200,
+        "height": 900
+      },
+      {
+        "file": "black-ceiling-fan-800.webp",
+        "width": 800,
+        "height": 600
+      }
+    ],
+    "source": "client-upload/client-10_280e.jpg",
+    "sha256": "d235b7409c11cd44e5cd5985125bcf95d58ae36e0456b3591384f6da22c7283e",
+    "uncropped": false
+  },
+  {
+    "id": "covered-patio-ceiling-fans",
+    "alt": "Covered patio with a wood-beam ceiling, three ceiling fans, wall sconces, and stone columns.",
+    "role": "content",
+    "original_width": 1000,
+    "original_height": 753,
+    "variants": [
+      {
+        "file": "covered-patio-ceiling-fans-1600.webp",
+        "width": 1000,
+        "height": 753
+      },
+      {
+        "file": "covered-patio-ceiling-fans-800.webp",
+        "width": 800,
+        "height": 602
+      }
+    ],
+    "source": "client-upload/client-02_10fe.jpg",
+    "sha256": "dd2758cebbeeaa3d97b5bad2b5f57afaac7df72b3777714ed8f958cfb1c90e33",
+    "uncropped": false
+  },
+  {
+    "id": "recessed-ceiling-light",
+    "alt": "Recessed downlight turned on in a textured white ceiling.",
+    "role": "content",
+    "original_width": 4032,
+    "original_height": 3024,
+    "variants": [
+      {
+        "file": "recessed-ceiling-light-1200.webp",
+        "width": 1200,
+        "height": 900
+      },
+      {
+        "file": "recessed-ceiling-light-800.webp",
+        "width": 800,
+        "height": 600
+      }
+    ],
+    "source": "client-upload/client-11_8849.jpg",
+    "sha256": "3b04ca2a68d3535084643069d5a7297dfe19c75f4ec2eecf6288524beb1c96f1",
+    "uncropped": false
+  },
+  {
+    "id": "recessed-light-closeup",
+    "alt": "Close view of a lit recessed downlight with a white trim ring.",
+    "role": "archive",
+    "original_width": 1920,
+    "original_height": 1815,
+    "variants": [
+      {
+        "file": "recessed-light-closeup-1200.webp",
+        "width": 1200,
+        "height": 1134
+      },
+      {
+        "file": "recessed-light-closeup-800.webp",
+        "width": 800,
+        "height": 756
+      }
+    ],
+    "source": "https://irp.cdn-website.com/394d9953/dms3rep/multi/opt/image_23-1920w.png",
+    "sha256": "4c18dcd5ac019240119353b79b518c6353178a1edea00dd2ebcbb33d3c6626b0"
+  },
+  {
+    "id": "recessed-light-unlit",
+    "alt": "Unlit recessed downlight with a white trim ring in a textured ceiling.",
+    "role": "content",
+    "original_width": 4032,
+    "original_height": 3024,
+    "variants": [
+      {
+        "file": "recessed-light-unlit-1200.webp",
+        "width": 1200,
+        "height": 900
+      },
+      {
+        "file": "recessed-light-unlit-800.webp",
+        "width": 800,
+        "height": 600
+      }
+    ],
+    "source": "client-upload/client-06_4cb5.jpg",
+    "sha256": "58dd85298874d86a1ddfa3c7cc5cfd22e448b766c716178a568539e6210a269c",
+    "uncropped": false
+  },
+  {
+    "id": "labeled-breaker-panel",
+    "alt": "Outdoor main breaker panel on a stucco wall, with handwritten labels for HVAC, the casita, kitchen, and pool.",
+    "role": "content",
+    "original_width": 4032,
+    "original_height": 3024,
+    "variants": [
+      {
+        "file": "labeled-breaker-panel-1600.webp",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "file": "labeled-breaker-panel-1200.webp",
+        "width": 1200,
+        "height": 900
+      },
+      {
+        "file": "labeled-breaker-panel-800.webp",
+        "width": 800,
+        "height": 600
+      }
+    ],
+    "source": "client-upload/client-04_dc83.jpg",
+    "sha256": "ddc3c18da7aae9684c291779bc01f932b6dbdd262142d948b65b070becb63bfd",
+    "uncropped": false
+  },
+  {
+    "id": "residential-breaker-panel",
+    "alt": "Close view of a Siemens residential breaker panel with numbered slots and breakers.",
+    "role": "content",
+    "original_width": 4032,
+    "original_height": 3024,
+    "variants": [
+      {
+        "file": "residential-breaker-panel-1200.webp",
+        "width": 1200,
+        "height": 900
+      },
+      {
+        "file": "residential-breaker-panel-800.webp",
+        "width": 800,
+        "height": 600
+      }
+    ],
+    "source": "client-upload/client-17_2412.jpg",
+    "sha256": "6377ea3685c7da8c359ad5bc3206957e23cfb63f480a13fd82876172155abce4",
+    "uncropped": false
+  },
+  {
+    "id": "open-electrical-panel-wall",
+    "alt": "Recessed electrical panel opened in a closet wall, with breakers and wiring visible.",
+    "role": "content",
+    "original_width": 1000,
+    "original_height": 750,
+    "variants": [
+      {
+        "file": "open-electrical-panel-wall.webp",
+        "width": 800,
+        "height": 600
+      }
+    ],
+    "source": "client-upload/client-19_94d7.jpg",
+    "sha256": "089c25c34e0a885bb680b937109da054465a55578470fc014939fdfbd144da30",
+    "uncropped": false
+  },
+  {
+    "id": "breaker-panel-studio",
+    "alt": "Open electrical panel with two rows of breakers, photographed against a plain wall.",
+    "role": "content",
+    "original_width": 1024,
+    "original_height": 1024,
+    "variants": [
+      {
+        "file": "breaker-panel-studio-1024.webp",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "file": "breaker-panel-studio-800.webp",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "source": "https://irp.cdn-website.com/394d9953/dms3rep/multi/7cbe320a-2bc9-47c4-9507-426b4b191889.png",
+    "sha256": "d7874e39e6fac5cc3735fd00d747829f6cf141aa9059a9faed0ed7c20edce3cf"
+  },
+  {
+    "id": "renovation-render-interior",
+    "alt": "Before-and-after view of a renovation: exposed brick and unfinished plaster on the left, and a finished room with wood flooring on the right.",
+    "role": "content",
+    "original_width": 4300,
+    "original_height": 2374,
+    "variants": [
+      {
+        "file": "renovation-render-interior-1200.webp",
+        "width": 1200,
+        "height": 663
+      },
+      {
+        "file": "renovation-render-interior-800.webp",
+        "width": 800,
+        "height": 442
+      }
+    ],
+    "source": "client-upload/client-05_1996.jpg",
+    "sha256": "378d94cef7ae9083c8800771ffd8759192af54cd6475a6c79d2dbf08a2a83582",
+    "uncropped": true
+  },
+  {
+    "id": "lounge-interior-rendering",
+    "alt": "Computer rendering of a lounge with a built-in desk, wall-mounted screens, and a glass partition.",
+    "role": "content",
+    "original_width": 640,
+    "original_height": 341,
+    "variants": [
+      {
+        "file": "lounge-interior-rendering.webp",
+        "width": 640,
+        "height": 341
+      }
+    ],
+    "source": "https://irp.cdn-website.com/394d9953/dms3rep/multi/opt/f39a9cc2-80ec-47a1-a2e0-2562e08a422d_img_0390-2880w.jpeg",
+    "sha256": "5053a9794a862382a0566c0523ce8468f5d35e782ba248ee75c9069a4b17feaf"
+  }
+]

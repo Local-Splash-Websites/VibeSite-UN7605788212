@@ -1,5 +1,31 @@
 # Notes
 
+## Round 3 new copy for client review
+
+New marketing copy lives in `content/marketing.json`. It does not add ratings, review counts, awards, warranties, financing, 24/7 service, response times, team size, or cities outside the profile list. Existing Google reviews are unchanged. Existing service paragraphs from the previous site were kept, including sentences that already mentioned electrical emergencies.
+
+Hero: “Electrical work and remodeling for homes in the valley.” Support: “MB Construction and Electric has helped homeowners since 1978. We are licensed and insured under CSLB #352894.”
+
+Why choose us:
+- Licensed and insured. California contractor license CSLB #352894. We are licensed and insured.
+- Working since 1978. Homeowners in La Quinta have called us for electrical work and remodeling since 1978.
+- Electrical and construction. Panels, lighting, wiring, kitchens, bathrooms, additions, and design-build work are all part of the same company.
+- Set hours you can plan around. The office is open Monday through Friday, 8:00 a.m. to 5:00 p.m. Saturday and Sunday are closed.
+
+How it works:
+1. Call or send a note. Phone (760) 227-5499 or use the quote form.
+2. Describe the project. Share whether you need electrical work, a remodel, or both, and where the property is.
+3. Pick a weekday time. Visits are scheduled Monday through Friday between 8:00 a.m. and 5:00 p.m.
+4. Complete the agreed work. We do the electrical or construction work we discussed, with safety in mind on every job.
+
+Safety line on electrical pages: “Safety is not a matter we take lightly. Electrical repairs, panels, circuits, and lighting are handled by a licensed contractor, CSLB #352894.”
+
+FAQ: licensed (CSLB #352894), hours, the profile service-area list, the published electrical and construction services, how to request a quote, and payment methods (cash, money transfers, Zelle, check).
+
+Call-to-action band: “Talk through the next project. Call (760) 227-5499 Monday through Friday, 8:00 a.m. to 5:00 p.m., or send a quote request.”
+
+Per-service benefit lists repeat work already published on those pages (panels, circuits, lighting, fans, EV chargers, generators, detectors, fixtures, wall fixtures, kitchens, bathrooms, and whole-house updates). Each service page also has one or two questions that point back to that same list.
+
 ## Round 2 photos
 
 The client sent 20 project photos. They are the same scenes as the Duda gallery, several of them at a higher resolution (panels, lighting, kitchens, the before-and-after room). Those files replaced the smaller copies. The before-and-after renovation image is shown at its natural aspect, not cropped. A tighter duplicate of the lit recessed downlight was left out of the gallery so the page does not show the same ceiling twice.

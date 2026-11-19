@@ -592,3 +592,101 @@ a:hover { color: var(--copper); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+.utility-bar {
+  background: var(--navy-deep);
+  color: #f4efe8;
+  font-size: 0.82rem;
+}
+.utility-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 0.35rem;
+}
+.utility-bar p { margin: 0; }
+.utility-bar a { color: #fff; font-weight: 700; }
+
+.header-actions { display: flex; align-items: center; gap: 0.5rem; margin-left: auto; }
+.header-quote {
+  display: none;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.4rem 0.9rem;
+  border: 2px solid var(--navy);
+  border-radius: 999px;
+  color: var(--navy);
+  font-weight: 700;
+  text-decoration: none;
+}
+.section .eyebrow { color: var(--copper); font-weight: 700; margin: 0 0 0.2rem; }
+
+.why-grid, .steps {
+  list-style: none;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+.why-grid li, .steps li {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 0.7rem;
+  padding: 0.85rem 0.95rem;
+}
+.why-grid h3, .steps h3 { margin: 0 0 0.25rem; font-size: 1.05rem; }
+.why-grid p, .steps p { margin: 0; color: var(--muted); }
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 999px;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+}
+
+.faq { display: grid; gap: 0.45rem; margin-top: 0.7rem; }
+.faq details {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+  padding: 0.55rem 0.8rem;
+}
+.faq summary { cursor: pointer; font-weight: 700; min-height: 2.75rem; display: flex; align-items: center; }
+.faq p { margin: 0.2rem 0 0.45rem; color: var(--muted); }
+
+.mobile-call {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  body { padding-bottom: 3.4rem; }
+  .mobile-call {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 6;
+    min-height: 3.1rem;
+    background: var(--navy);
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+  }
+}
+
+@media (min-width: 800px) {
+  .why-grid, .steps { grid-template-columns: repeat(4, 1fr); }
+  .header-quote { display: inline-flex; }
+  .faq-wrap { max-width: 46rem; }
+}

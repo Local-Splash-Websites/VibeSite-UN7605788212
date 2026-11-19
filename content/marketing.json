@@ -1,0 +1,194 @@
+{
+  "hero": {
+    "eyebrow": "Electrician and general contractor in La Quinta",
+    "headline": "Electrical work and remodeling for homes in the valley.",
+    "support": "MB Construction and Electric has helped homeowners since 1978. We are licensed and insured under CSLB #352894.",
+    "call_label": "Call (760) 227-5499",
+    "quote_label": "Request a quote"
+  },
+  "why": {
+    "eyebrow": "Why homeowners call",
+    "heading": "Why choose MB Construction and Electric",
+    "items": [
+      {
+        "title": "Licensed and insured",
+        "text": "California contractor license CSLB #352894. We are licensed and insured."
+      },
+      {
+        "title": "Working since 1978",
+        "text": "Homeowners in La Quinta have called us for electrical work and remodeling since 1978."
+      },
+      {
+        "title": "Electrical and construction",
+        "text": "Panels, lighting, wiring, kitchens, bathrooms, additions, and design-build work are all part of the same company."
+      },
+      {
+        "title": "Set hours you can plan around",
+        "text": "The office is open Monday through Friday, 8:00 a.m. to 5:00 p.m. Saturday and Sunday are closed."
+      }
+    ]
+  },
+  "process": {
+    "eyebrow": "How it works",
+    "heading": "From the first call to the finished work",
+    "steps": [
+      {
+        "title": "Call or send a note",
+        "text": "Phone (760) 227-5499 or use the quote form. Tell us your name and how to reach you."
+      },
+      {
+        "title": "Describe the project",
+        "text": "Share whether you need electrical work, a remodel, or both, and where the property is."
+      },
+      {
+        "title": "Pick a weekday time",
+        "text": "We schedule visits Monday through Friday between 8:00 a.m. and 5:00 p.m."
+      },
+      {
+        "title": "Complete the agreed work",
+        "text": "We do the electrical or construction work we discussed, with safety in mind on every job."
+      }
+    ]
+  },
+  "safety": {
+    "heading": "Safety on electrical work",
+    "text": "Safety is not a matter we take lightly. Electrical repairs, panels, circuits, and lighting are handled by a licensed contractor, CSLB #352894."
+  },
+  "faq": {
+    "eyebrow": "Questions",
+    "heading": "Questions homeowners ask",
+    "items": [
+      {
+        "q": "Are you licensed?",
+        "a": "Yes. MB Construction and Electric is licensed and insured. The published California contractor license number is CSLB #352894."
+      },
+      {
+        "q": "What are your hours?",
+        "a": "Monday through Friday, 8:00 a.m. to 5:00 p.m. We are closed Saturday and Sunday."
+      },
+      {
+        "q": "Which communities do you serve?",
+        "a": "Cathedral City, Coachella, Indio, La Quinta, Palm Desert, Palm Springs, Rancho Mirage, and Riverside County."
+      },
+      {
+        "q": "What kind of projects do you take?",
+        "a": "Electrical work such as wiring, panels, lighting, ceiling fans, generators, EV chargers, and low-voltage wiring, plus construction work such as renovations, kitchens, bathrooms, room and garage additions, ADUs, and design-build projects."
+      },
+      {
+        "q": "How do I ask for a quote?",
+        "a": "Call (760) 227-5499 or send the form on this site. Thank you for contacting us. We will get back to you as soon as possible."
+      },
+      {
+        "q": "Which ways can I pay?",
+        "a": "Cash, money transfers, Zelle, and check."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Talk through the next project",
+    "text": "Call (760) 227-5499 Monday through Friday, 8:00 a.m. to 5:00 p.m., or send a quote request.",
+    "call_label": "Call (760) 227-5499",
+    "quote_label": "Request a quote"
+  },
+  "services": {
+    "residential-electrical-services": {
+      "benefits_heading": "Residential electrical work we already list",
+      "benefits": [
+        "Panel changes and service upgrades",
+        "Energy-efficient lighting installation",
+        "Ceiling fan installation",
+        "Breaker and fuse replacement",
+        "Electric water heater service",
+        "Circuit repair"
+      ],
+      "faq": [
+        {
+          "q": "Can you look at a panel or a circuit that is acting up?",
+          "a": "Yes. Panel changes, service upgrades, breaker and fuse replacement, and circuit repair are part of our residential electrical work."
+        },
+        {
+          "q": "Do you install ceiling fans and lighting?",
+          "a": "Yes. Ceiling fan installation and energy-efficient lighting installation are listed residential services."
+        }
+      ]
+    },
+    "electrical-installation": {
+      "benefits_heading": "Installation work from our service list",
+      "benefits": [
+        "Electrical panel upgrades",
+        "Circuit installations and upgrades",
+        "Ceiling fans and exhaust fans",
+        "EV charger installation and service",
+        "Home and commercial generators",
+        "Carbon monoxide and smoke detector installation"
+      ],
+      "faq": [
+        {
+          "q": "Do you install EV chargers?",
+          "a": "Yes. EV charger installation and service is one of the electrical installation services we list."
+        },
+        {
+          "q": "Who should do electrical installation work?",
+          "a": "Our own page says DIY wiring can put a home and family at risk. We install and repair electrical systems as a licensed contractor, CSLB #352894."
+        }
+      ]
+    },
+    "light-fixtures": {
+      "benefits_heading": "Light fixture work we offer",
+      "benefits": [
+        "Installation of a new light fixture",
+        "Repair of an existing fixture",
+        "Upgrades to energy-efficient lighting",
+        "Residential and commercial fixture work"
+      ],
+      "faq": [
+        {
+          "q": "Can you replace a fixture I already have?",
+          "a": "Yes. We install new light fixtures and repair existing ones for homes and businesses in La Quinta."
+        }
+      ]
+    },
+    "wall-fixtures": {
+      "benefits_heading": "Wall fixture work we offer",
+      "benefits": [
+        "Shelves, cabinets, mirrors, and artwork",
+        "Installation planned for the way the wall is built",
+        "Repair of fixtures that are already in place"
+      ],
+      "faq": [
+        {
+          "q": "What counts as a wall fixture?",
+          "a": "Our wall fixture page covers shelves, cabinets, mirrors, and artwork, installed or repaired for homes and businesses in La Quinta."
+        }
+      ]
+    },
+    "home-renovations": {
+      "benefits_heading": "Renovation work we describe",
+      "benefits": [
+        "Kitchens, bathrooms, and whole-house updates",
+        "A site evaluation before the plan is set",
+        "Craftsmanship aimed at a finished home you can live in"
+      ],
+      "faq": [
+        {
+          "q": "Do renovations include more than one room?",
+          "a": "Yes. We describe kitchen updates, bathroom updates, and whole-house makeovers."
+        }
+      ]
+    },
+    "kitchen-and-bathroom-remodeling": {
+      "benefits_heading": "Kitchen and bathroom remodeling",
+      "benefits": [
+        "Kitchen remodeling",
+        "Bathroom remodeling",
+        "Planning from the first idea through the finished room"
+      ],
+      "faq": [
+        {
+          "q": "Do you remodel both kitchens and bathrooms?",
+          "a": "Yes. Kitchen and bathroom remodeling is one of our published services."
+        }
+      ]
+    }
+  }
+}

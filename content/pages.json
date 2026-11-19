@@ -1,0 +1,351 @@
+{
+  "home": {
+    "id": "home",
+    "path": "/",
+    "template": "home",
+    "title": "MB Construction and Electric | La Quinta, CA",
+    "description": "Electrician and general contractor in La Quinta, CA since 1978. Electrical work, remodeling, and home renovations. Call (760) 227-5499.",
+    "h1": "MB Construction and Electric",
+    "hero_image": "desert-home-tile-roof",
+    "eyebrow": "Electrician and general contractor in La Quinta, California",
+    "intro": "Serving homeowners across La Quinta, California.",
+    "story_heading": "Our Story",
+    "story": [
+      "Does your home need safe power, reliable updates, or a remodeling team that can handle the work from start to finish? MB Construction and Electric is an electrician in La Quinta, CA, serving residential customers with skilled electrical and construction solutions backed by decades of hands-on experience. Since 1978, we have helped homeowners improve their properties with quality workmanship and dependable service. We are licensed and insured, and we take every project seriously because your home deserves work that is safe, functional, and built to last."
+    ],
+    "trust_heading": "Trust Your Local General Contracting Experts",
+    "trust": [
+      {
+        "title": "Reliable Consistency",
+        "text": "Comprehensive services by skilled General Contractor Professionals"
+      },
+      {
+        "title": "Customer Satisfaction",
+        "text": "Trusted by numerous customers in La Quinta"
+      },
+      {
+        "title": "Fast Responsiveness",
+        "text": "Expert General Contractor specialists for projects large or small"
+      }
+    ],
+    "services_heading": "Expert Services",
+    "services_intro": "Trust your local General Contracting experts in La Quinta"
+  },
+  "pages": [
+    {
+      "id": "residential-electrical-services",
+      "path": "/residential-electrical-services",
+      "template": "service",
+      "group": "electrical",
+      "nav": "Residential Electrical",
+      "title": "Residential Electrical Services | La Quinta, CA",
+      "description": "Residential electrical services in La Quinta, CA, including panel changes, lighting, ceiling fans, and circuit repair. Call (760) 227-5499.",
+      "h1": "Offering Top to Bottom Residential Electrical Services",
+      "lede": "Promoting energy efficiency with proven residential electrical solutions.",
+      "card": "Illuminate your home with excellence through our specialized residential electrical services, where our skilled professionals deploy the latest industry advancements to create a seamlessly integrated, reliable, and efficient electrical infrastructure.",
+      "image": "residential-breaker-panel",
+      "sections": [
+        {
+          "h2": "Performing Your High-Demanding Residential Electrical Services",
+          "paragraphs": [
+            "From simple troubleshooting requests to electrical emergencies, MB Construction and Electric specializes in a host of residential electrical services. An electrical emergency can strike any time from a severe lightning storm to a blown transformer. That’s when our residential electrical service company comes in to render an effective and affordable solution. Any faulty fixture or appliance that deals with your electrical system—whether it be your heat pump, refrigerator or chandelier—our residential electrical service experts won’t shy away from. Contact us to upgrade your outdated wiring or to switch to energy-efficient lighting for your home."
+          ]
+        },
+        {
+          "h2": "Full-Service Residential Electrical Services",
+          "paragraphs": [
+            "Providing specialized residential electrical services for years, MB Construction and Electric is a far cry from your standard local electrician. We go above and beyond, offering a comprehensive list of residential electrical services such as:"
+          ],
+          "bullets": [
+            "Panel changes",
+            "Service upgrades",
+            "Energy-efficient lighting installation",
+            "Ceiling fan installation",
+            "Breaker and fuse replacement",
+            "Electric water heater services",
+            "Circuit repair"
+          ],
+          "closing": [
+            "Safety is not a matter we take lightly here at MB Construction and Electric. With that, combined with our commitment to quality service, we stand out as a residential electrical service expert that La Quinta residents invariably trust. We want to help you protect your investment and grant you the most energy savings from your electrical fixtures and appliances as you manage practical household duties. Need a new ceiling fan installed? Have your electrical panels overheated? Decide on our California electricians to diagnose the problem, eliminate any faulty wiring or exposed electrical parts and get your electrical needs addressed properly."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "electrical-installation",
+      "path": "/electrical-installation",
+      "template": "service",
+      "group": "electrical",
+      "nav": "Electrical Installation",
+      "title": "Electrical Installation | La Quinta, CA",
+      "description": "Electrical installation and repairs in La Quinta, CA: panel upgrades, circuits, ceiling fans, EV chargers, and generators. Call (760) 227-5499.",
+      "h1": "Schedule Your Appointment With an Electrical Installation Expert",
+      "lede": "Electrical installation and electrical repairs.",
+      "card": "Upgrade your home's electrical system with our professional electrical installation services, ensuring safety and optimal performance.",
+      "image": "labeled-breaker-panel",
+      "sections": [
+        {
+          "h2": "Our Team is Here for Your Electrical Installations",
+          "paragraphs": [
+            "Your home’s electrical system is complex, and it deserves best-in-class attention from a skilled professional. That’s especially true when it comes to electrical repairs. If you DIY these projects, you may put your home and your family at risk through faulty wiring or mistaken connections. Fortunately, there’s another option. Our team can provide the electrical installation and electrical repairs you need. Don’t struggle through electrical DIY projects any longer. MB Construction and Electric is the go-to electrical installation expert for La Quinta, California."
+          ]
+        },
+        {
+          "h2": "Our Electrical Installation Services",
+          "paragraphs": [
+            "When you need electrical panel upgrades, our team is the place to turn. Offering skilled, professional, rapid electrical installation services, we cater to all your household’s needs and concerns, providing a safe electrical structure for your home and family. Here are just a few of the services we offer our customers:"
+          ],
+          "bullets": [
+            "Electrical panel upgrades",
+            "Circuit installations and upgrades",
+            "Ceiling fan installations",
+            "EV charger installation and service",
+            "Exhaust fan installation",
+            "Home generators",
+            "Commercial generators",
+            "Commercial energy savings and audits",
+            "Commercial electrical panel upgrades",
+            "Carbon monoxide and smoke detector installation",
+            "And more"
+          ],
+          "closing": [
+            "Ready to learn more about MB Construction and Electric, La Quinta, California’s trusted electrical expert? Contact us today: (760) 227-5499."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "light-fixtures",
+      "path": "/light-fixtures",
+      "template": "service",
+      "group": "electrical",
+      "nav": "Light Fixtures",
+      "title": "Light Fixture Services | La Quinta, CA",
+      "description": "Light fixture installation, repair, and replacement for homes and businesses in La Quinta, CA. Call MB Construction and Electric at (760) 227-5499.",
+      "h1": "Expert Light Fixture Services by MB Construction and Electric",
+      "lede": "Residential and commercial light fixture installation, repair, and replacement.",
+      "card": "Brighten up your home with our stylish and efficient light fixture solutions, perfect for enhancing the ambiance of any room.",
+      "image": "branch-chandelier-dining",
+      "sections": [
+        {
+          "h2": "Professional Light Fixture Services for Your Home or Business",
+          "paragraphs": [
+            "At MB Construction and Electric in La Quinta, we offer expert light fixture services to enhance the aesthetic appeal and functionality of your space. Whether you need a new light fixture installed, an existing one repaired, or want to upgrade to energy-efficient lighting, our team of experienced technicians can help.",
+            "Our team uses high-quality materials and industry-standard tools to ensure your light fixtures are installed or repaired safely and efficiently. We work quickly to minimize any disruption to your daily routine, and we always leave the work area clean and tidy."
+          ]
+        },
+        {
+          "h2": "Benefits of Choosing MB Construction and Electric for Your Light Fixture Needs",
+          "paragraphs": [
+            "When you choose MB Construction and Electric for your light fixture needs, you can enjoy several benefits, including:"
+          ],
+          "bullets": [
+            "Experienced technicians: Our team of skilled technicians has years of experience in the industry and can handle any light fixture job with ease.",
+            "High-quality materials: We use only the best materials and tools to ensure your light fixtures are installed or repaired to the highest standards.",
+            "Fast turnaround time: We understand that your time is valuable, which is why we work quickly to complete your light fixture project as soon as possible.",
+            "Competitive pricing: We offer competitive pricing for all of our light fixture services, so you can get the quality work you need at a price you can afford.",
+            "Excellent customer service: We are committed to providing exceptional customer service, and we will work with you every step of the way to ensure your complete satisfaction."
+          ],
+          "closing": [
+            "Contact MB Construction and Electric today at (760) 227-5499 to schedule your light fixture service appointment in La Quinta. We look forward to helping you achieve your lighting goals!"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wall-fixtures",
+      "path": "/wall-fixtures",
+      "template": "service",
+      "group": "electrical",
+      "nav": "Wall Fixtures",
+      "title": "Wall Fixtures | La Quinta, CA",
+      "description": "Wall fixture installation and repair in La Quinta, CA for shelves, mirrors, and lighting. Call MB Construction and Electric at (760) 227-5499.",
+      "h1": "Wall Fixtures Services by MB Construction and Electric in La Quinta",
+      "lede": "Professional installation and repair of wall fixtures.",
+      "card": "Add character and functionality to your walls with our versatile wall fixtures, ideal for both decorative and practical uses.",
+      "image": "covered-patio-ceiling-fans",
+      "sections": [
+        {
+          "h2": "Reliable Wall Fixture Installations and Repairs",
+          "paragraphs": [
+            "At MB Construction and Electric, we provide top-notch wall fixtures services for homeowners and businesses in La Quinta. We understand how important wall fixtures are to the overall aesthetics and functionality of any space, which is why we strive to deliver reliable installations and repairs that meet your needs.",
+            "Our team of experienced professionals has the necessary skills and knowledge to handle all types of wall fixtures, including shelves, cabinets, mirrors, and artwork. MB Construction and Electric uses high-quality materials and advanced techniques to ensure that your fixtures are installed securely and in a way that enhances your space."
+          ]
+        },
+        {
+          "h2": "Benefits of Our Wall Fixtures Services",
+          "paragraphs": [
+            "At MB Construction and Electric, we are committed to delivering exceptional services to our clients in La Quinta. Here are some of the benefits you can expect when you choose us for your wall fixtures needs:"
+          ],
+          "bullets": [
+            "Professional and reliable services: Our team of experts is dedicated to providing you with reliable and efficient services that exceed your expectations.",
+            "Customized solutions: We understand that every space is unique, and we take the time to understand your specific needs and preferences to provide customized solutions that meet your requirements.",
+            "High-quality materials: We use only the best materials available in the market to ensure that your wall fixtures are durable and long-lasting.",
+            "Competitive pricing: We offer competitive pricing for our services, without compromising on quality. We provide upfront quotes with no hidden fees, so you know exactly what you're paying for.",
+            "Excellent customer service: We pride ourselves on our excellent customer service. Our friendly and knowledgeable team is always ready to answer any questions you may have and address any concerns."
+          ],
+          "closing": [
+            "Whether you need new wall fixtures installed or repairs done on existing ones, our team at MB Construction and Electric is here to help. Contact MB Construction and Electric today at (760) 227-5499 to schedule a consultation and see how we can enhance the look and functionality of your space with our wall fixtures services."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "home-renovations",
+      "path": "/home-renovations",
+      "template": "service",
+      "group": "construction",
+      "nav": "Home Renovations",
+      "title": "Home Renovations | La Quinta, CA",
+      "description": "Home renovations in La Quinta, CA, from kitchens and bathrooms to whole-house updates. Call MB Construction and Electric at (760) 227-5499.",
+      "h1": "Advanced Home Transformations for Exceptional Residences",
+      "lede": "Elevate your space with innovative home improvement solutions.",
+      "card": "Transform your living space with our comprehensive home renovations, designed to reflect your unique style and enhance your comfort.",
+      "image": "kitchen-remodel-in-progress",
+      "sections": [
+        {
+          "h2": "Unleashing the Potential of Home Aesthetics",
+          "paragraphs": [
+            "At MB Construction and Electric, we're not just builders; we're creators of remarkable living spaces. As pioneers in the General Contractor industry in La Quinta, we bring a unique blend of artistry and craftsmanship to every home improvement project we undertake. Our commitment to innovation and technical excellence sets us apart, ensuring that your residence receives the transformative touch it truly deserves.",
+            "With a team of seasoned professionals, we specialize in curating tailored home improvement solutions that harmonize functionality, aesthetics, and value. Whether it's a revitalized kitchen, an elegant bathroom, or a comprehensive whole-house makeover, our expertise spans a wide spectrum of renovation endeavors."
+          ]
+        },
+        {
+          "h2": "Choosing MB Construction and Electric for Your Needs",
+          "paragraphs": [
+            "At MB Construction and Electric, we take pride in our meticulous and client-centric approach to home renovations. Here's an insight into how we approach each project with utmost dedication and expertise:"
+          ],
+          "bullets": [
+            "Thorough site evaluation: This evaluation helps us create a comprehensive plan that aligns with your budget and timeline.",
+            "Tailored renovation solutions: Our team curates custom renovation solutions that cater to your specific requirements, blending functionality, aesthetics, and durability seamlessly.",
+            "Skilled craftsmanship: Our attention to detail ensures flawless execution of each project, leaving no room for compromise on quality.",
+            "Quality materials and equipment: Our commitment to quality underpins every aspect of our work, ensuring your renovated home remains an investment for the future.",
+            "Timely project delivery: Our efficient work process and diligent project management enable us to deliver on schedule without compromising on excellence."
+          ],
+          "closing": [
+            "If you're ready to embark on an exciting journey of renovating your home with unmatched expertise and creativity, reach out to our team today! Dial (760) 227-5499 to schedule a consultation and let MB Construction and Electric be your partner in transforming your living spaces into something truly extraordinary."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kitchen-and-bathroom-remodeling",
+      "path": "/kitchen-and-bathroom-remodeling",
+      "template": "service",
+      "group": "construction",
+      "nav": "Kitchen and Bathroom Remodeling",
+      "title": "Kitchen and Bathroom Remodeling | La Quinta, CA",
+      "description": "Kitchen and bathroom remodeling in La Quinta, CA by MB Construction and Electric. Call (760) 227-5499 to talk through your project.",
+      "h1": "Enhancing Spaces Through Kitchen and Bathroom Remodeling",
+      "lede": "Elevate your interiors with kitchen and bathroom renovations.",
+      "card": "Elevate the heart of your home with our kitchen and bathroom remodeling services, creating beautiful, functional spaces that you'll love.",
+      "image": "kitchen-tile-backsplash",
+      "sections": [
+        {
+          "h2": "Innovation in Every Detail",
+          "paragraphs": [
+            "At MB Construction and Electric, we believe in the power of innovation. Our team of seasoned professionals doesn't just follow trends – we set them. Through a deep understanding of the latest materials, technologies, and spatial concepts, we craft designs that are not only aesthetically striking but also highly functional.",
+            "Our dedication to efficiency is unwavering. We comprehend the complexities that often accompany remodeling projects, and that's why we implement a comprehensive project management approach. From the initial concept stages to the final execution, we ensure that every facet of the project is meticulously planned and executed."
+          ]
+        },
+        {
+          "h2": "Revitalizing Interiors: The MB Construction and Electric Difference",
+          "paragraphs": [
+            "At MB Construction and Electric, we bring unparalleled craftsmanship to every project. Here are more reasons why MB Construction and Electric is your top choice:"
+          ],
+          "bullets": [
+            "Holistic planning: Our approach encompasses every aspect of the remodeling process, ensuring a harmonious blend of design, functionality, and comfort.",
+            "Tailored solutions: We understand that no two spaces are alike. Our solutions are tailored to your specific needs, ensuring that your personality shines through in every nook and corner.",
+            "Quality assurance: We are committed to using the finest materials and adhering to the highest industry standards, resulting in lasting quality that you can count on.",
+            "Transparent communication: Throughout the project, we keep the lines of communication open. You're informed at every step, providing you with peace of mind and clarity.",
+            "Timely delivery: We understand the importance of timelines. Our efficient processes allow us to deliver exceptional results within the agreed-upon timeframe."
+          ],
+          "closing": [
+            "Elevate your living experience through our unmatched kitchen and bathroom remodeling services. Discover the MB Construction and Electric difference today by contacting us at (760) 227-5499. Your dream interiors are just a step away."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "about",
+      "path": "/about",
+      "template": "about",
+      "nav": "About",
+      "title": "About MB Construction and Electric | La Quinta, CA",
+      "description": "MB Construction and Electric is a licensed electrician and general contractor in La Quinta, CA, serving homeowners since 1978. License CSLB352894.",
+      "h1": "About MB Construction and Electric",
+      "image": "covered-entry-columns",
+      "paragraphs": [
+        "Does your home need safe power, reliable updates, or a remodeling team that can handle the work from start to finish? MB Construction and Electric is an electrician in La Quinta, CA, serving residential customers with skilled electrical and construction solutions backed by decades of hands-on experience. Since 1978, we have helped homeowners improve their properties with quality workmanship and dependable service. We are licensed and insured, and we take every project seriously because your home deserves work that is safe, functional, and built to last.",
+        "As an electrical contractor, we provide electrical services for homes that need repairs, upgrades, installations, and new wiring. Our work includes electrical wiring, electric outlet installation, lighting installation, electrical panel installation, main panel upgrades, circuit breaker replacement, electrical repairs, and complete electrical installations. We also handle ceiling fan installation, generator installation, EV charger installation, surge protection installation, Cat 5 low voltage wiring, and other low voltage wiring needs. Whether you need a residential electrician for planned improvements or an emergency electrician for a problem that cannot wait, we bring the right tools, experience, and professionalism to the job.",
+        "Our mission is simple: we provide quality workmanship and unparalleled customer service to maintain the highest level of professionalism. What makes us different is the range of expertise we bring to each property. With multiple licenses covering general contracting, painting, and electrical work, we can support larger home improvement goals without making the process complicated. We also specialize in kitchen and bathroom remodeling, including kitchen renovations, bathroom renovations, room additions, garage additions, ADU building, and design build projects.",
+        "Our slogan is “Unparalleled Customer Service,” and we work hard to live up to it every day. Contact MB Construction and Electric in La Quinta, CA, to discuss your next electrical or remodeling project. We help homeowners plan and complete projects with care."
+      ],
+      "services_intro": "Small electrical issues can turn into big frustrations fast, but the right team makes the fix simple. For help from a trusted electrician in La Quinta, CA, call MB Construction and Electric today at (760) 227-5499.",
+      "services": [
+        "Electrician",
+        "Electrical Contractor",
+        "General Contractor",
+        "Main Panel Upgrade Services",
+        "Electrical Services",
+        "Residential Electrical Services",
+        "Commercial Electrical Services",
+        "Emergency Electrical Services",
+        "Electrical Wiring Services",
+        "Electric Outlet Installation Services",
+        "Lighting Installation Services",
+        "Electrical Panel Installation Services",
+        "Main Panel Upgrades Services",
+        "Circuit Breaker Replacement Services",
+        "Electrical Repair Services",
+        "Electrical Installation Services",
+        "Generator Installation Services",
+        "Ceiling Fan Installation Services",
+        "EV Charger Installation Services",
+        "Surge Protection Installation Services",
+        "Cat 5 Low Voltage Wiring Services",
+        "Low Voltage Wiring Services",
+        "Remodeling Services",
+        "House Renovation Services",
+        "Room Addition Services",
+        "Garage Addition Services",
+        "Home Improvement Services",
+        "Construction Services",
+        "Custom Home Builder Services",
+        "Kitchen Renovation Services",
+        "Bathroom Renovation Services",
+        "ADU Building Services",
+        "Design Build Services"
+      ]
+    },
+    {
+      "id": "gallery",
+      "path": "/gallery",
+      "template": "gallery",
+      "nav": "Gallery",
+      "title": "Project Gallery | MB Construction and Electric",
+      "description": "Photos of homes, kitchens, lighting, and electrical work from MB Construction and Electric in La Quinta, CA.",
+      "h1": "Project Gallery",
+      "intro": "Desert homes, kitchens, lighting, and electrical panels from work around La Quinta and the Coachella Valley."
+    },
+    {
+      "id": "contact",
+      "path": "/contact",
+      "template": "contact",
+      "nav": "Contact",
+      "title": "Contact MB Construction and Electric | La Quinta, CA",
+      "description": "Contact MB Construction and Electric in La Quinta, CA. Call (760) 227-5499, Monday–Friday 8:00 a.m.–5:00 p.m. Serving the Coachella Valley since 1978.",
+      "h1": "Contact MB Construction and Electric",
+      "intro": "Since 1978. Proudly serving Cathedral City, Coachella, Indio, La Quinta, Palm Desert, Palm Springs, Rancho Mirage, and Riverside County."
+    },
+    {
+      "id": "privacy-policy",
+      "path": "/privacy-policy",
+      "template": "privacy",
+      "nav": "Privacy Policy",
+      "title": "Privacy Policy | MB Construction and Electric",
+      "description": "Privacy policy for mbconstructionandelectric.com. How MB Construction and Electric collects, uses, and protects customer information.",
+      "h1": "Privacy Policy"
+    }
+  ]
+}

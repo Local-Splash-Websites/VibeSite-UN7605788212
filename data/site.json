@@ -1,0 +1,61 @@
+{
+  "site_id": "394d9953",
+  "name": "MB Construction and Electric",
+  "legal_name": "MB Construction and Electric",
+  "tagline": "Unparalleled Customer Service",
+  "mission": "At MB Construction and Electric, we provide quality workmanship and unparalleled customer service to maintain the highest level of professionalism.",
+  "canonical_host": "https://www.mbconstructionandelectric.com",
+  "locale": "en_US",
+  "phone_display": "(760) 227-5499",
+  "phone_tel": "+17602275499",
+  "phone_schema": "+1-760-227-5499",
+  "email": "michael@goproremodel.com",
+  "established": "1978",
+  "license": "CSLB352894",
+  "licensed_and_insured": true,
+  "address": {
+    "street": "79887 Memorial Place",
+    "city": "La Quinta",
+    "region": "CA",
+    "postal_code": "92253",
+    "country": "US"
+  },
+  "geo": {
+    "latitude": "33.7263",
+    "longitude": "-116.271"
+  },
+  "hours": [
+    {"day": "Monday", "opens": "08:00", "closes": "17:00"},
+    {"day": "Tuesday", "opens": "08:00", "closes": "17:00"},
+    {"day": "Wednesday", "opens": "08:00", "closes": "17:00"},
+    {"day": "Thursday", "opens": "08:00", "closes": "17:00"},
+    {"day": "Friday", "opens": "08:00", "closes": "17:00"}
+  ],
+  "hours_closed": ["Saturday", "Sunday"],
+  "hours_summary": "Monday–Friday 8:00 a.m.–5:00 p.m. Closed Saturday and Sunday.",
+  "payment_methods": ["Cash", "Money Transfers", "Zelle", "Check"],
+  "service_areas": [
+    "Cathedral City",
+    "Coachella",
+    "Indio",
+    "La Quinta",
+    "Palm Desert",
+    "Palm Springs",
+    "Rancho Mirage",
+    "Riverside County"
+  ],
+  "google_categories": ["Electrician", "General contractor"],
+  "same_as": [
+    "https://www.facebook.com/profile.php?id=61553333889575",
+    "https://www.yelp.com/biz/mb-construction-palm-springs-4",
+    "https://maps.google.com/maps?cid=17308194195471457897"
+  ],
+  "review_url": "https://search.google.com/local/writereview?placeid=ChIJWyEgdeXrgacRad6NBOsOM_A",
+  "map_embed": "https://maps.google.com/maps?q=79887%20Memorial%20Place%2C%20La%20Quinta%2C%20CA%2092253&z=15&output=embed",
+  "map_link": "https://maps.google.com/maps?cid=17308194195471457897",
+  "social": {
+    "facebook": "https://www.facebook.com/profile.php?id=61553333889575",
+    "yelp": "https://www.yelp.com/biz/mb-construction-palm-springs-4",
+    "google_maps": "https://maps.google.com/maps?cid=17308194195471457897"
+  }
+}

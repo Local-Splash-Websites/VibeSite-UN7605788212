@@ -340,6 +340,7 @@ a:hover { color: var(--copper); }
 
 .area-list li {
   background: var(--white);
+  color: var(--navy-deep);
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 0.35rem 0.8rem;

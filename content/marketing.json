@@ -1,0 +1,234 @@
+{
+  "hero": {
+    "eyebrow": "Electrician · General contractor · La Quinta",
+    "headline": "Electrical work and remodeling for the home you live in.",
+    "support": "Panels, lighting, kitchens, and baths. Licensed and insured since 1978.",
+    "call_label": "Call (760) 227-5499",
+    "quote_label": "Get a quote"
+  },
+  "services_intro": {
+    "eyebrow": "Services",
+    "heading": "Electrical and remodeling for homes like yours",
+    "text": "A full panel, a circuit that keeps tripping, a kitchen that no longer works, a bathroom that has to be rebuilt. MB Construction and Electric takes the electrical work and the remodeling. Homeowners have called this company since 1978. The license is CSLB #352894, and the company is licensed and insured.",
+    "lines": [
+      "Licensed and insured · CSLB #352894",
+      "Working since 1978",
+      "Monday–Friday, 8:00 a.m.–5:00 p.m."
+    ]
+  },
+  "why": {
+    "eyebrow": "Why homeowners call",
+    "heading": "Why choose MB Construction and Electric",
+    "items": [
+      {
+        "title": "Licensed and insured",
+        "text": "The published California contractor license is CSLB #352894. Electrical work and remodeling are done by a company that is licensed and insured."
+      },
+      {
+        "title": "Working since 1978",
+        "text": "Homeowners in La Quinta have called MB Construction and Electric for electrical work and remodeling since 1978."
+      },
+      {
+        "title": "Electrical and the build",
+        "text": "A circuit that trips, a panel with no open spaces, a kitchen that does not fit how you cook, a bath that needs new work. Those jobs stay with one company instead of two separate crews."
+      },
+      {
+        "title": "The work we list",
+        "text": "Wiring, panels, lighting, ceiling fans, generators, EV chargers, kitchens, bathrooms, room and garage additions, ADUs, and design-build projects are on the published service list."
+      },
+      {
+        "title": "Hours you can plan around",
+        "text": "The office is open Monday through Friday, 8:00 a.m. to 5:00 p.m. Saturday and Sunday are closed, so a visit is set on a weekday."
+      },
+      {
+        "title": "A clear way to start",
+        "text": "Call (760) 227-5499 or send the quote form. Share the address and whether the job is electrical, a remodel, or both."
+      }
+    ]
+  },
+  "process": {
+    "eyebrow": "How it works",
+    "heading": "From the first call to the finished work",
+    "steps": [
+      {
+        "title": "Call or send a note",
+        "text": "Phone (760) 227-5499 or use the quote form. Leave your name and the best way to reach you."
+      },
+      {
+        "title": "Describe the project",
+        "text": "Say whether you need electrical work, a remodel, or both, and which city the property is in."
+      },
+      {
+        "title": "Pick a weekday time",
+        "text": "Visits are scheduled Monday through Friday between 8:00 a.m. and 5:00 p.m."
+      },
+      {
+        "title": "Complete the agreed work",
+        "text": "We do the electrical or construction work we discussed, with safety in mind on every job."
+      }
+    ]
+  },
+  "safety": {
+    "heading": "Safety on electrical work",
+    "text": "Safety is not a matter we take lightly. Electrical repairs, panels, circuits, and lighting are handled by a licensed contractor, CSLB #352894."
+  },
+  "faq": {
+    "eyebrow": "Questions",
+    "heading": "Questions homeowners ask",
+    "items": [
+      {
+        "q": "Are you licensed?",
+        "a": "Yes. MB Construction and Electric is licensed and insured. The published California contractor license number is CSLB #352894."
+      },
+      {
+        "q": "What are your hours?",
+        "a": "Monday through Friday, 8:00 a.m. to 5:00 p.m. Saturday and Sunday are closed."
+      },
+      {
+        "q": "Do you work on weekends?",
+        "a": "No. The office is closed Saturday and Sunday. Calls and visits are planned for weekdays, 8:00 a.m. to 5:00 p.m."
+      },
+      {
+        "q": "Which communities do you serve?",
+        "a": "Cathedral City, Coachella, Indio, La Quinta, Palm Desert, Palm Springs, Rancho Mirage, and Riverside County."
+      },
+      {
+        "q": "Do you do both electrical work and remodeling?",
+        "a": "Yes. MB Construction and Electric is an electrician and a general contractor. Electrical services and construction services are both published on this site, so a panel and a kitchen can be talked through with the same company."
+      },
+      {
+        "q": "What electrical problems can you take on?",
+        "a": "Residential work includes panel changes, service upgrades, energy-efficient lighting, ceiling fans, breaker and fuse replacement, electric water heaters, and circuit repair. Installation work also includes new circuits, exhaust fans, EV chargers, home and commercial generators, and carbon monoxide and smoke detectors."
+      },
+      {
+        "q": "Can you remodel a kitchen or a bathroom?",
+        "a": "Yes. Kitchen remodeling and bathroom remodeling are published services, including planning from the first idea through the finished room. Whole-house updates are listed under home renovations."
+      },
+      {
+        "q": "What should I tell you when I call?",
+        "a": "Your name, a phone number, the property address, and whether you need electrical work, a remodel, or both. If a light, a panel, or a room is the issue, say which one."
+      },
+      {
+        "q": "How do I ask for a quote?",
+        "a": "Call (760) 227-5499 or send the form on this site. Thank you for contacting us. We will get back to you as soon as possible."
+      },
+      {
+        "q": "Which ways can I pay?",
+        "a": "Cash, money transfers, Zelle, and check."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Talk through the next project",
+    "text": "Call (760) 227-5499 Monday through Friday, 8:00 a.m. to 5:00 p.m., or send a quote request.",
+    "call_label": "Call (760) 227-5499",
+    "quote_label": "Get a quote"
+  },
+  "services": {
+    "residential-electrical-services": {
+      "hero_lede": "Panel changes, lighting, ceiling fans, breakers, and circuit repair for the house you live in.",
+      "benefits_heading": "Residential electrical work we already list",
+      "benefits": [
+        "Panel changes and service upgrades",
+        "Energy-efficient lighting installation",
+        "Ceiling fan installation",
+        "Breaker and fuse replacement",
+        "Electric water heater service",
+        "Circuit repair"
+      ],
+      "faq": [
+        {
+          "q": "Can you look at a panel or a circuit that is acting up?",
+          "a": "Yes. Panel changes, service upgrades, breaker and fuse replacement, and circuit repair are part of our residential electrical work. Call and say what the panel or the circuit is doing."
+        },
+        {
+          "q": "Do you install ceiling fans and lighting?",
+          "a": "Yes. Ceiling fan installation and energy-efficient lighting installation are listed residential services."
+        }
+      ]
+    },
+    "electrical-installation": {
+      "hero_lede": "New circuits, panel upgrades, fans, EV chargers, generators, and detectors, installed by a licensed contractor.",
+      "benefits_heading": "Installation work from our service list",
+      "benefits": [
+        "Electrical panel upgrades",
+        "Circuit installations and upgrades",
+        "Ceiling fans and exhaust fans",
+        "EV charger installation and service",
+        "Home and commercial generators",
+        "Carbon monoxide and smoke detector installation"
+      ],
+      "faq": [
+        {
+          "q": "Do you install EV chargers?",
+          "a": "Yes. EV charger installation and service is one of the electrical installation services we list."
+        },
+        {
+          "q": "Who should do electrical installation work?",
+          "a": "Our own page says DIY wiring can put a home and family at risk. We install and repair electrical systems as a licensed contractor, CSLB #352894."
+        }
+      ]
+    },
+    "light-fixtures": {
+      "hero_lede": "A new fixture, a repair, or a switch to energy-efficient lighting for a home or a business.",
+      "benefits_heading": "Light fixture work we offer",
+      "benefits": [
+        "Installation of a new light fixture",
+        "Repair of an existing fixture",
+        "Upgrades to energy-efficient lighting",
+        "Residential and commercial fixture work"
+      ],
+      "faq": [
+        {
+          "q": "Can you replace a fixture I already have?",
+          "a": "Yes. We install new light fixtures and repair existing ones for homes and businesses in La Quinta."
+        }
+      ]
+    },
+    "wall-fixtures": {
+      "hero_lede": "Shelves, cabinets, mirrors, and artwork, mounted for the way the wall is built.",
+      "benefits_heading": "Wall fixture work we offer",
+      "benefits": [
+        "Shelves, cabinets, mirrors, and artwork",
+        "Installation planned for the way the wall is built",
+        "Repair of fixtures that are already in place"
+      ],
+      "faq": [
+        {
+          "q": "What counts as a wall fixture?",
+          "a": "Our wall fixture page covers shelves, cabinets, mirrors, and artwork, installed or repaired for homes and businesses in La Quinta."
+        }
+      ]
+    },
+    "home-renovations": {
+      "hero_lede": "Kitchens, bathrooms, additions, and whole-house updates, planned as one job.",
+      "benefits_heading": "Renovation work we describe",
+      "benefits": [
+        "Kitchens, bathrooms, and whole-house updates",
+        "A site evaluation before the plan is set",
+        "Craftsmanship aimed at a finished home you can live in"
+      ],
+      "faq": [
+        {
+          "q": "Do renovations include more than one room?",
+          "a": "Yes. We describe kitchen updates, bathroom updates, and whole-house makeovers."
+        }
+      ]
+    },
+    "kitchen-and-bathroom-remodeling": {
+      "hero_lede": "A kitchen or bathroom remodel, from the first idea through the finished room.",
+      "benefits_heading": "Kitchen and bathroom remodeling",
+      "benefits": [
+        "Kitchen remodeling",
+        "Bathroom remodeling",
+        "Planning from the first idea through the finished room"
+      ],
+      "faq": [
+        {
+          "q": "Do you remodel both kitchens and bathrooms?",
+          "a": "Yes. Kitchen and bathroom remodeling is one of our published services, from the first idea through the finished room."
+        }
+      ]
+    }
+  }
+}

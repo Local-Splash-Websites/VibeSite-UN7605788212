@@ -1,5 +1,9 @@
 # Notes
 
+## Round 5
+
+The footer label “Service area.” is now the heading “Areas We Serve.” Each city links to its service-area page. No other new marketing claims.
+
 ## Round 4 new copy for client review
 
 New service-area copy is in `content/areas.json`. It does not add project claims, street addresses, ratings, review counts, guarantees, 24/7 service, response times, or cities outside the profile list. Hero sentences that already had two sentences now sit on their own lines. The words in the homepage lede did not change.

@@ -29,6 +29,15 @@ def paragraphs(items):
     return "\n".join(f"<p>{esc(text)}</p>" for text in items or [])
 
 
+def linkify_phone(site, text):
+    safe = esc(text)
+    phone = esc(site["phone_display"])
+    return safe.replace(
+        phone,
+        f'<a href="tel:{esc(site["phone_tel"])}">{phone}</a>',
+    )
+
+
 def lede_html(text):
     parts = [part.strip() for part in re.split(r"(?<=[.!?])\s+(?=[A-Z])", str(text).strip()) if part.strip()]
     if len(parts) < 2:
@@ -345,9 +354,11 @@ def footer(site, pages, year):
     <section>
       <h2>Hours of operation</h2>
       {hours_list(site)}
-      <p class="areas"><span class="label">Service area.</span></p>
+    </section>
+    <section class="footer-areas">
+      <h2>Areas We Serve</h2>
       <ul class="area-links">{areas}</ul>
-      <p><a href="/service-areas/">All service areas</a></p>
+      <p class="all-areas"><a href="/service-areas/">All service areas</a></p>
     </section>
   </div>
   <div class="wrap legal">
@@ -407,7 +418,7 @@ def cta(site, marketing, place=""):
   <div class="wrap cta-inner">
     <div>
       <h2>{esc(heading)}</h2>
-      <p>{esc(text)}</p>
+      <p>{linkify_phone(site, text)}</p>
     </div>
     <div class="cta-actions">
       <a class="btn-slant btn-call" href="tel:{esc(site["phone_tel"])}">{esc(block["call_label"])}</a>
@@ -435,10 +446,10 @@ def why_section(marketing):
 """
 
 
-def process_section(marketing):
+def process_section(site, marketing):
     block = marketing["process"]
     steps = "\n".join(
-        f"<li><span class=\"step-num\">{index}</span><h3>{esc(step['title'])}</h3><p>{esc(step['text'])}</p></li>"
+        f"<li><span class=\"step-num\">{index}</span><h3>{esc(step['title'])}</h3><p>{linkify_phone(site, step['text'])}</p></li>"
         for index, step in enumerate(block["steps"], start=1)
     )
     return f"""
@@ -635,7 +646,7 @@ def render_home(site, page, pages, images, reviews, marketing):
   </div>
 </section>
 {why_section(marketing)}
-{process_section(marketing)}
+{process_section(site, marketing)}
 <section class="section band-white">
   <div class="wrap split">
     <div>
@@ -790,7 +801,7 @@ def render_service(site, page, pages, images, marketing):
     <h2>Related services</h2>
     <div class="portrait-row compact" tabindex="0" aria-label="Related services">{related_html}</div>
   </div>
-  {process_section(marketing)}
+  {process_section(site, marketing)}
   {service_faq}
 </article>
 {cta(site, marketing)}

@@ -446,6 +446,25 @@ def why_section(marketing):
 """
 
 
+def trust_badges(marketing):
+    icons = {
+        "shield": '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.2 4.6 5.1v6.2c0 4.6 3.1 7.9 7.4 9.4 4.3-1.5 7.4-4.8 7.4-9.4V5.1L12 2.2zm-1.1 12.2-2.4-2.4 1.2-1.2 1.2 1.2 3.3-3.3 1.2 1.2-4.5 4.5z"/></svg>',
+        "calendar": '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h2v2h6V2h2v2h3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3V2zm12 8H5v9h14v-9zM8 13h2v2H8v-2zm3.5 0h2v2h-2v-2z"/></svg>',
+        "clock": '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 .01 20.01A10 10 0 0 0 12 2zm0 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16zm1 3h-2v6.1l3.7 2.2 1-1.7-2.7-1.6V7z"/></svg>',
+    }
+    items = []
+    for badge in marketing["services_intro"]["badges"]:
+        items.append(
+            "<li>"
+            f'<span class="trust-icon" aria-hidden="true">{icons[badge["icon"]]}</span>'
+            '<span class="trust-copy">'
+            f"<strong>{esc(badge['title'])}</strong>"
+            f"<span>{esc(badge['text'])}</span>"
+            "</span></li>"
+        )
+    return f'<ul class="trust-badges">{"".join(items)}</ul>'
+
+
 def process_section(site, marketing):
     block = marketing["process"]
     steps = "\n".join(
@@ -616,15 +635,6 @@ def render_home(site, page, pages, images, reviews, marketing):
   </div>
 </div>
 """
-    icons = [
-        '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 4 6v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V6l-8-4z"/></svg>',
-        '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h2v2h6V2h2v2h3v18H4V4h3V2zm12 8H7v10h12V10z"/></svg>',
-        '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 11H7v-2h4V6h2v7z"/></svg>',
-    ]
-    lines = "\n".join(
-        f"<li>{icon}<span>{esc(line)}</span></li>"
-        for icon, line in zip(icons, intro["lines"])
-    )
     aside = f'<figure class="stage-frame">{frame}</figure>{seal}'
     body = f"""
 {photo_hero(hero, home_inner, aside=aside, kind="home")}
@@ -637,9 +647,9 @@ def render_home(site, page, pages, images, reviews, marketing):
       </div>
       <div>
         <p>{esc(intro["text"])}</p>
-        <ul class="trust-lines">{lines}</ul>
       </div>
     </div>
+    {trust_badges(marketing)}
     <div class="portrait-row" tabindex="0" aria-label="Services">
       {"".join(cards)}
     </div>
@@ -785,6 +795,7 @@ def render_service(site, page, pages, images, marketing):
     return f"""
 <article class="page">
   {photo_hero(hero, inner)}
+  <div class="wrap trust-band">{trust_badges(marketing)}</div>
   <div class="wrap page-grid">
     <div class="prose">
       {"".join(sections)}
@@ -1070,6 +1081,7 @@ def render_city(site, city, pages, images, marketing):
     return f"""
 <article class="page">
   {photo_hero(hero, inner)}
+  <div class="wrap trust-band">{trust_badges(marketing)}</div>
   <div class="wrap page-grid">
     <div class="prose">
       {paragraphs(city["paragraphs"])}

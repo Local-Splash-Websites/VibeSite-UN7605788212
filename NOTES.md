@@ -1,5 +1,15 @@
 # Notes
 
+## Round 6
+
+The three trust lines under the services intro are now badges:
+
+- Licensed & Insured. CA License CSLB #352894.
+- Since 1978. Serving Coachella Valley homes.
+- Mon–Fri 8–5. Weekday appointments.
+
+The same three badges appear on the service pages and the city pages. No other facts were added.
+
 ## Round 5
 
 The footer label “Service area.” is now the heading “Areas We Serve.” Each city links to its service-area page. No other new marketing claims.

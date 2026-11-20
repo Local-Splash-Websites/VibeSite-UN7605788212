@@ -1259,7 +1259,8 @@ body { background: #fff; }
   gap: 1rem;
 }
 .area-index a {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   color: inherit;
   text-decoration: none;
@@ -1268,7 +1269,16 @@ body { background: #fff; }
   border-radius: 0.8rem;
   overflow: hidden;
 }
-.area-index img { width: 100%; height: 11rem; object-fit: cover; display: block; }
+.area-index img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  flex: none;
+  min-height: 0;
+}
 .area-index div { padding: 0.85rem 0.9rem 1rem; }
 .area-index h2 { margin: 0 0 0.35rem; font-size: 1.35rem; }
 .area-index p { margin: 0; color: var(--muted); }

@@ -32,7 +32,17 @@ body {
 img { max-width: 100%; height: auto; }
 
 a { color: var(--navy); }
-a:hover { color: var(--copper); }
+
+a,
+button,
+summary,
+.nav-drop-btn,
+.nav-toggle,
+.mobile-call {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus:not(:focus-visible) { outline: none; }
 
 :focus-visible {
   outline: 3px solid var(--focus);
@@ -49,7 +59,7 @@ a:hover { color: var(--copper); }
   z-index: 10;
 }
 
-.skip:focus { top: 1rem; }
+.skip:focus-visible { top: 1rem; }
 
 .visually-hidden {
   position: absolute;
@@ -105,7 +115,6 @@ a:hover { color: var(--copper); }
   line-height: 1.15;
 }
 
-.phone-button:hover { color: var(--white); background: var(--navy-deep); }
 
 .phone-kicker {
   font-size: 0.72rem;
@@ -250,15 +259,10 @@ a:hover { color: var(--copper); }
   border: 2px solid var(--white);
 }
 
-.hero .button:hover,
-.cta-band .button:hover { color: var(--navy-deep); }
-
 .button-quiet {
   background: transparent;
   color: var(--white);
 }
-
-.button-quiet:hover { color: var(--white); background: rgba(255, 255, 255, 0.08); }
 
 .license { color: #f4e7dc; }
 
@@ -377,7 +381,6 @@ a:hover { color: var(--copper); }
   border-color: var(--navy);
 }
 
-.page-hero .button:hover { color: var(--white); background: var(--navy-deep); }
 
 .page-grid,
 .contact-grid { display: grid; gap: 1rem; padding-block: 1rem; }
@@ -424,7 +427,9 @@ a:hover { color: var(--copper); }
 .contact-card { background: var(--white); border: 1px solid var(--line); border-radius: 0.8rem; }
 
 .hours li,
-.footer-links li { display: flex; justify-content: space-between; gap: 1rem; padding-block: 0.2rem; }
+.footer-links li { display: flex; justify-content: space-between; gap: 0.75rem; padding-block: 0.2rem; }
+.hours li { flex-wrap: nowrap; align-items: baseline; }
+.hours li span:last-child { white-space: nowrap; }
 
 .lead-form {
   position: relative;
@@ -453,7 +458,6 @@ a:hover { color: var(--copper); }
   cursor: pointer;
 }
 
-.lead-form button:hover { background: var(--navy-deep); }
 
 .lead-form input,
 .lead-form textarea {
@@ -487,7 +491,6 @@ a:hover { color: var(--copper); }
 
 .cta-band { background: var(--navy-deep); color: var(--white); padding-block: 2rem; }
 
-.cta-band a:not(.button) { color: var(--white); }
 
 .site-footer {
   background: #101923;
@@ -496,6 +499,11 @@ a:hover { color: var(--copper); }
 }
 
 .site-footer a { color: #f4efe8; }
+.site-footer a[href^="tel:"],
+.site-footer a[href^="mailto:"] {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
 
 .footer-grid { display: grid; gap: 1.5rem; }
 
@@ -556,7 +564,7 @@ a:hover { color: var(--copper); }
   .service-columns ul { columns: 3; }
   .thumb-grid { grid-template-columns: repeat(4, 1fr); }
   .gallery { grid-template-columns: repeat(3, 1fr); }
-  .footer-grid { grid-template-columns: 1.3fr 0.7fr 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
   .hero {
     display: grid;
   }
@@ -711,8 +719,7 @@ body { background: #fff; }
   padding-block: 0.72rem;
 }
 .utility-dot { opacity: 0.85; }
-.utility-bar a { color: #fff; font-weight: 800; text-decoration: none; }
-.utility-bar a:hover { color: #fff; text-decoration: underline; }
+.utility-bar a { color: #fff; font-weight: 800; text-decoration: underline; text-underline-offset: 0.15em; }
 
 .header-bar { padding-block: 0.55rem; }
 .header-actions .btn-slant { min-height: 2.7rem; padding: 0.55rem 0.95rem; font-size: 0.78rem; }
@@ -744,10 +751,6 @@ body { background: #fff; }
 }
 .btn-call::before { background: #9a431c; }
 .btn-quote::before { background: #10283f; box-shadow: inset 0 0 0 2px #d7e4f4; }
-.btn-call:hover,
-.btn-quote:hover { color: #fff; }
-.btn-call:hover::before { background: #7d3516; }
-.btn-quote:hover::before { background: #0b1c2e; }
 .stage .btn-call,
 .stage .btn-quote,
 .cta-band .btn-call,
@@ -794,8 +797,7 @@ body { background: #fff; }
   font-size: 0.78rem;
   margin: 0 0 0.85rem;
 }
-.stage .eyebrow a { color: #f6c49a; text-decoration: none; }
-.stage .eyebrow a:hover { text-decoration: underline; }
+.stage .eyebrow a { color: #f8d7b8; }
 .stage h1 {
   font-family: var(--serif);
   font-weight: 700;
@@ -906,7 +908,30 @@ body { background: #fff; }
   border-color: rgba(255, 255, 255, 0.16);
 }
 .band-navy .steps p { color: #e7e0d6; }
-.band-navy .step-num { background: #9a431c; }
+.band-navy .step-num { background: #9a431c; color: #fff; }
+.band-navy a,
+.cta-band a:not(.btn-slant),
+.stage a:not(.btn-slant),
+.photo-band a {
+  color: #f8d7b8;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+}
+.photo-band .area-list a {
+  color: var(--navy-deep);
+  text-decoration: none;
+}
+.band-navy :focus-visible,
+.cta-band :focus-visible,
+.stage :focus-visible,
+.site-footer :focus-visible,
+.utility-bar :focus-visible,
+.photo-band :focus-visible,
+.mobile-call:focus-visible,
+.panel-call:focus-visible {
+  outline-color: #fff;
+}
 
 .services-intro {
   display: grid;
@@ -1088,7 +1113,6 @@ body { background: #fff; }
   text-decoration: none;
   text-transform: uppercase;
 }
-.panel-call:hover { color: #fff; background: #7d3516; }
 
 .nav-links > li > a,
 .nav-drop-btn {
@@ -1124,10 +1148,8 @@ body { background: #fff; }
   transform-origin: left center;
   transition: transform 0.2s ease;
 }
-.nav-links > li > a:hover::after,
 .nav-links > li > a:focus-visible::after,
 .nav-links > li > a[aria-current="page"]::after,
-.nav-drop-btn:hover .nav-label::after,
 .nav-drop-btn:focus-visible .nav-label::after,
 .nav-drop.is-current .nav-label::after,
 .nav-drop.is-open .nav-label::after {
@@ -1146,13 +1168,41 @@ body { background: #fff; }
 .nav-sub { display: none; list-style: none; margin: 0; padding: 0; }
 .nav-drop.is-open > .nav-sub { display: grid; }
 
-.area-links { list-style: none; margin: 0.35rem 0 0; padding: 0; }
-.area-links a {
-  color: #f4efe8;
-  text-decoration: none;
+.site-footer { padding-top: 2.4rem; }
+.site-footer h2 { font-size: 1.15rem; margin: 0 0 0.55rem; }
+.site-footer .footer-links a,
+.site-footer .social a,
+.site-footer .hours li {
+  min-height: 2.5rem;
+}
+.footer-links a,
+.site-footer .social a {
   display: inline-flex;
   align-items: center;
-  min-height: 2.2rem;
+}
+.footer-areas .all-areas { margin: 0.35rem 0 0; }
+.area-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.1rem 0.8rem;
+}
+.area-links a,
+.footer-areas .all-areas a {
+  color: #f4efe8;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  line-height: 1.25;
+}
+.footer-areas .all-areas a {
+  color: #f8d7b8;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+  font-weight: 700;
 }
 .area-list a {
   color: var(--navy-deep);
@@ -1271,7 +1321,6 @@ body { background: #fff; }
     padding: 0.3rem 0.7rem;
     border-radius: 0.45rem;
   }
-  .nav-sub a:hover,
   .nav-sub a:focus-visible { background: var(--paper); color: #9a431c; }
 }
 
@@ -1282,4 +1331,33 @@ body { background: #fff; }
 
 @media (min-width: 1100px) {
   .area-index { grid-template-columns: repeat(4, 1fr); }
+  .footer-grid { grid-template-columns: 1.15fr 0.7fr 0.95fr 1.15fr 0.9fr; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a:hover { color: var(--copper); }
+  .phone-button:hover { color: var(--white); background: var(--navy-deep); }
+  .hero .button:hover,
+  .cta-band .button:hover { color: var(--navy-deep); }
+  .button-quiet:hover { color: var(--white); background: rgba(255, 255, 255, 0.08); }
+  .page-hero .button:hover { color: var(--white); background: var(--navy-deep); }
+  .lead-form button:hover { background: var(--navy-deep); }
+  .utility-bar a:hover { color: #fff; }
+  .btn-call:hover,
+  .btn-quote:hover,
+  .mobile-call:hover,
+  .panel-call:hover { color: #fff; }
+  .btn-call:hover::before,
+  .panel-call:hover { background: #7d3516; }
+  .btn-quote:hover::before { background: #0b1c2e; }
+  .band-navy a:hover,
+  .cta-band a:not(.btn-slant):hover,
+  .stage a:not(.btn-slant):hover,
+  .photo-band a:hover,
+  .site-footer a:hover,
+  .footer-areas .all-areas a:hover { color: #fff; }
+  .photo-band .area-list a:hover { color: var(--copper); }
+  .nav-links > li > a:hover::after,
+  .nav-drop-btn:hover .nav-label::after { transform: scaleX(1); }
+  .nav-sub a:hover { background: var(--paper); color: #9a431c; }
 }

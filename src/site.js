@@ -112,4 +112,24 @@
       if (trap && trap.value) event.preventDefault();
     });
   });
+
+  function blurPhoneLink(el) {
+    if (!el || !el.matches) return;
+    if (el.matches("a[href^='tel:'], a[href^='mailto:']")) el.blur();
+  }
+
+  document.addEventListener("click", function (event) {
+    var el = event.target.closest("a[href^='tel:'], a[href^='mailto:']");
+    if (!el) return;
+    window.setTimeout(function () {
+      if (document.activeElement === el) el.blur();
+    }, 0);
+  });
+
+  window.addEventListener("pagehide", function () {
+    blurPhoneLink(document.activeElement);
+  });
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible") blurPhoneLink(document.activeElement);
+  });
 })();

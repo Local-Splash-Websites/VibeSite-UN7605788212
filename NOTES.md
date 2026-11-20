@@ -320,7 +320,7 @@ The profile also has a separate primary phone. The site owner decided that numbe
 ## Open questions for the client
 
 - The street address 79887 Memorial Place, La Quinta, CA 92253 is in the profile and in the old site’s JSON-LD, but it was not printed in the visible Duda page body. Address status in the profile is Hybrid. Confirm the street address should stay visible.
-- Email `michael@goproremodel.com` is in the profile and was not shown on the Duda pages. It is on the contact page and in JSON-LD. Confirm it should be public.
+- Resolved: the owner asked to remove michael@goproremodel.com from the public site. It is not in the footer, contact page, JSON-LD, or any other public file. The contact form and phone remain.
 - Profile `WebsiteURL` is `https://www.goproremodel.com/`. This rebuild does not link that domain. Confirm the public site should stay on mbconstructionandelectric.com.
 - Yelp placement URL is `https://www.yelp.com/biz/mb-construction-palm-springs-4`. The slug says Palm Springs. Confirm it is the right listing.
 - The about copy says the company holds multiple licenses covering general contracting, painting, and electrical work. The only published license number is CSLB352894. Send any other numbers that should be displayed.

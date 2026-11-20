@@ -115,11 +115,11 @@
 
   function blurPhoneLink(el) {
     if (!el || !el.matches) return;
-    if (el.matches("a[href^='tel:'], a[href^='mailto:']")) el.blur();
+    if (el.matches("a[href^='tel:']")) el.blur();
   }
 
   document.addEventListener("click", function (event) {
-    var el = event.target.closest("a[href^='tel:'], a[href^='mailto:']");
+    var el = event.target.closest("a[href^='tel:']");
     if (!el) return;
     window.setTimeout(function () {
       if (document.activeElement === el) el.blur();

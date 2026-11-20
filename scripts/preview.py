@@ -85,6 +85,20 @@ class Handler(BaseHTTPRequestHandler):
         }.get(path.suffix, "application/octet-stream")
         self.send_header("Content-Type", kind)
         self.send_header("Content-Length", str(length))
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "SAMEORIGIN")
+        self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
+        self.send_header("Permissions-Policy", "geolocation=(), microphone=(), camera=()")
+        self.send_header(
+            "Content-Security-Policy",
+            "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; "
+            "frame-src https://maps.google.com https://www.google.com; form-action 'self'; "
+            "base-uri 'self'; object-src 'none'; frame-ancestors 'self'",
+        )
+        if path.suffix in {".css", ".js", ".webp", ".png", ".svg"}:
+            self.send_header("Cache-Control", "public, max-age=31536000, immutable")
+        elif path.suffix in {".html", ".xml", ".txt"}:
+            self.send_header("Cache-Control", "public, max-age=600")
         self.end_headers()
 
     def log_message(self, fmt, *args):

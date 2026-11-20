@@ -111,16 +111,19 @@ def canonical(site, path):
     return host + href(path)
 
 
-def json_ld(site, page, image, focus=None):
-    host = site["canonical_host"].rstrip("/")
+def postal_address(site):
     address = site["address"]
-    areas = [area_node(name) for name in site["service_areas"]]
-    if isinstance(focus, str) and focus != "*":
-        service_areas = [area_node(focus)]
-        service_name = f"Electrical and general contracting in {focus}"
-    else:
-        service_areas = areas
-        service_name = "Electrical and general contracting"
+    return {
+        "@type": "PostalAddress",
+        "streetAddress": address["street"],
+        "addressLocality": address["city"],
+        "addressRegion": address["region"],
+        "postalCode": address["postal_code"],
+        "addressCountry": address["country"],
+    }
+
+
+def opening_hours(site):
     hours = []
     for row in site["hours"]:
         hours.append({
@@ -129,65 +132,117 @@ def json_ld(site, page, image, focus=None):
             "opens": row["opens"],
             "closes": row["closes"],
         })
-    image_url = host + "/assets/images/" + image["variants"][-1]["file"]
+    return hours
+
+
+def json_ld(site, page, image):
+    host = site["canonical_host"].rstrip("/")
+    areas = [area_node(name) for name in site["service_areas"]]
+    variants = sorted(image["variants"], key=lambda item: item["width"])
+    image_url = host + "/assets/images/" + variants[-1]["file"]
     logo_url = host + "/assets/images/logo.png"
-    data = {
-        "@context": "https://schema.org",
-        "@type": ["Electrician", "GeneralContractor"],
-        "@id": host + "/#business",
-        "name": site["name"],
-        "url": host + "/",
-        "image": image_url,
-        "logo": logo_url,
-        "telephone": site["phone_schema"],
-        "email": site["email"],
-        "description": page["description"],
-        "slogan": site["tagline"],
-        "foundingDate": site["established"],
-        "priceRange": None,
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": address["street"],
-            "addressLocality": address["city"],
-            "addressRegion": address["region"],
-            "postalCode": address["postal_code"],
-            "addressCountry": address["country"],
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": site["geo"]["latitude"],
-            "longitude": site["geo"]["longitude"],
-        },
-        "areaServed": areas,
-        "openingHoursSpecification": hours,
-        "paymentAccepted": ", ".join(site["payment_methods"]),
-        "identifier": {
-            "@type": "PropertyValue",
-            "name": "CSLB license",
-            "value": site["license"],
-        },
-        "hasMap": site["map_link"],
-        "sameAs": site["same_as"],
-    }
-    data.pop("priceRange", None)
-    if focus is None:
-        return json.dumps(data, ensure_ascii=False, indent=2)
     page_url = canonical(site, page["path"])
-    data.pop("@context", None)
-    service = {
-        "@type": "Service",
-        "@id": page_url + "#service",
-        "name": service_name,
-        "serviceType": ["Electrical service", "General contracting"],
-        "areaServed": service_areas,
-        "provider": {"@id": host + "/#business"},
-        "url": page_url,
-    }
-    return json.dumps(
-        {"@context": "https://schema.org", "@graph": [data, service]},
-        ensure_ascii=False,
-        indent=2,
-    )
+    org_id = host + "/#organization"
+    business_id = host + "/#business"
+    graph = [
+        {
+            "@type": "Organization",
+            "@id": org_id,
+            "name": site["name"],
+            "url": host + "/",
+            "logo": logo_url,
+            "telephone": site["phone_schema"],
+            "foundingDate": site["established"],
+            "sameAs": site["same_as"],
+            "address": postal_address(site),
+        },
+        {
+            "@type": ["Electrician", "GeneralContractor", "HomeAndConstructionBusiness"],
+            "@id": business_id,
+            "name": site["name"],
+            "url": host + "/",
+            "image": image_url,
+            "logo": logo_url,
+            "telephone": site["phone_schema"],
+            "description": page["description"],
+            "slogan": site["tagline"],
+            "foundingDate": site["established"],
+            "parentOrganization": {"@id": org_id},
+            "address": postal_address(site),
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": site["geo"]["latitude"],
+                "longitude": site["geo"]["longitude"],
+            },
+            "areaServed": areas,
+            "openingHoursSpecification": opening_hours(site),
+            "paymentAccepted": ", ".join(site["payment_methods"]),
+            "hasMap": site["map_link"],
+            "sameAs": site["same_as"],
+            "hasCredential": {
+                "@type": "EducationalOccupationalCredential",
+                "name": "CSLB 352894",
+                "credentialCategory": "license",
+                "identifier": "352894",
+                "recognizedBy": {
+                    "@type": "Organization",
+                    "name": "Contractors State License Board",
+                },
+            },
+        },
+        {
+            "@type": "WebSite",
+            "@id": host + "/#website",
+            "url": host + "/",
+            "name": site["name"],
+            "publisher": {"@id": org_id},
+            "inLanguage": "en-US",
+        },
+    ]
+    crumbs = page.get("crumbs") or []
+    if crumbs:
+        graph.append({
+            "@type": "BreadcrumbList",
+            "@id": page_url + "#breadcrumb",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": index,
+                    "name": crumb["name"],
+                    "item": host + href(crumb["path"]),
+                }
+                for index, crumb in enumerate(crumbs, start=1)
+            ],
+        })
+    faqs = page.get("faqs") or []
+    if faqs:
+        graph.append({
+            "@type": "FAQPage",
+            "@id": page_url + "#faq",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": item["q"],
+                    "acceptedAnswer": {"@type": "Answer", "text": item["a"]},
+                }
+                for item in faqs
+            ],
+        })
+    service = page.get("service")
+    if service:
+        served = areas
+        if service.get("area"):
+            served = [area_node(service["area"])]
+        graph.append({
+            "@type": "Service",
+            "@id": page_url + "#service",
+            "name": service["name"],
+            "serviceType": service.get("serviceType") or service["name"],
+            "url": page_url,
+            "provider": {"@id": business_id},
+            "areaServed": served,
+        })
+    return json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, indent=2)
 
 
 def hours_list(site):
@@ -334,8 +389,7 @@ def footer(site, pages, year):
         {esc(address["street"])}<br>
         {esc(address["city"])}, {esc(address["region"])} {esc(address["postal_code"])}
       </address>
-      <p><a href="tel:{esc(site["phone_tel"])}">{esc(site["phone_display"])}</a><br>
-      <a href="mailto:{esc(site["email"])}">{esc(site["email"])}</a></p>
+      <p><a href="tel:{esc(site["phone_tel"])}">{esc(site["phone_display"])}</a></p>
       <p>License # {esc(site["license"])}</p>
       <ul class="social">
         <li><a href="{esc(social["facebook"])}">Facebook</a></li>
@@ -510,12 +564,26 @@ def preload_image(image, sizes):
     )
 
 
-def layout(site, page, pages, body, hero_image, year, extra_head="", focus=None):
+def check_meta(page):
+    title = page["title"]
+    description = page["description"]
+    if len(title) > 60:
+        raise SystemExit(f"Title is {len(title)} characters: {title}")
+    if len(description) > 155:
+        raise SystemExit(f"Description is {len(description)} characters: {description}")
+
+
+def layout(site, page, pages, body, hero_image, year, extra_head=""):
+    check_meta(page)
     title = page["title"]
     description = page["description"]
     url = canonical(site, page["path"])
-    og_image = site["canonical_host"].rstrip("/") + "/assets/images/" + hero_image["variants"][-1]["file"]
-    ld = json_ld(site, page, hero_image, focus=focus)
+    variants = sorted(hero_image["variants"], key=lambda item: item["width"])
+    largest = variants[-1]
+    og_image = site["canonical_host"].rstrip("/") + "/assets/images/" + largest["file"]
+    robots = page.get("robots", "index, follow")
+    ld = json_ld(site, page, hero_image)
+    hero_preload = preload_image(hero_image, "100vw")
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -523,6 +591,7 @@ def layout(site, page, pages, body, hero_image, year, extra_head="", focus=None)
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{esc(title)}</title>
   <meta name="description" content="{esc(description)}">
+  <meta name="robots" content="{esc(robots)}">
   <link rel="canonical" href="{esc(url)}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="{esc(site["name"])}">
@@ -530,11 +599,16 @@ def layout(site, page, pages, body, hero_image, year, extra_head="", focus=None)
   <meta property="og:description" content="{esc(description)}">
   <meta property="og:url" content="{esc(url)}">
   <meta property="og:image" content="{esc(og_image)}">
+  <meta property="og:image:alt" content="{esc(hero_image["alt"])}">
+  <meta property="og:image:width" content="{largest["width"]}">
+  <meta property="og:image:height" content="{largest["height"]}">
   <meta property="og:locale" content="{esc(site["locale"])}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{esc(title)}">
   <meta name="twitter:description" content="{esc(description)}">
   <meta name="twitter:image" content="{esc(og_image)}">
+  <meta name="twitter:image:alt" content="{esc(hero_image["alt"])}">
+  {hero_preload}
   <link rel="icon" href="/assets/images/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="icon" href="/assets/images/favicon.png" sizes="48x48" type="image/png">
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
@@ -927,7 +1001,6 @@ def render_contact(site, page, images):
         {esc(address["city"])}, {esc(address["region"])} {esc(address["postal_code"])}
       </address>
       <p>Contact number: <a href="tel:{esc(site["phone_tel"])}">{esc(site["phone_display"])}</a></p>
-      <p>Email: <a href="mailto:{esc(site["email"])}">{esc(site["email"])}</a></p>
       <p>License # {esc(site["license"])}</p>
       <h3>Payment methods</h3>
       <p>{payments}</p>
@@ -986,6 +1059,11 @@ def render_not_found(site):
         "path": "/404.html",
         "title": "Page not found | MB Construction and Electric",
         "description": "That page is not on the MB Construction and Electric website. Call (760) 227-5499 or return to the homepage.",
+        "robots": "noindex, follow",
+        "crumbs": [
+            {"name": "Home", "path": "/"},
+            {"name": "Page not found", "path": "/404.html"},
+        ],
     }
     body = f"""
 <article class="page">
@@ -1123,9 +1201,119 @@ def sitemap(site, pages):
     return "\n".join(body) + "\n"
 
 
+def audit_public(public):
+    email_re = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
+    linked = set()
+    for path in public.rglob("*"):
+        if not path.is_file() or path.suffix not in {".html", ".xml", ".txt", ".css", ".js", ".json"}:
+            continue
+        text = path.read_text(encoding="utf-8")
+        if email_re.search(text) or "mailto:" in text.lower():
+            raise SystemExit(f"Email leaked in {path}")
+        if path.suffix != ".html":
+            continue
+        h1_count = len(re.findall(r"<h1\b", text))
+        if h1_count != 1:
+            raise SystemExit(f"{path} has {h1_count} h1 elements")
+        if re.search(r"<img\b(?![^>]*\balt=\"[^\"]+\")", text):
+            raise SystemExit(f"Image missing descriptive alt in {path}")
+        blocks = re.findall(r'<script type="application/ld\+json">(.*?)</script>', text, re.S)
+        if not blocks:
+            raise SystemExit(f"Missing JSON-LD in {path}")
+        for block in blocks:
+            data = json.loads(block)
+            types = []
+
+            def walk(node):
+                if isinstance(node, dict):
+                    if "email" in node:
+                        raise SystemExit(f"JSON-LD email in {path}")
+                    if "@type" in node:
+                        kind = node["@type"]
+                        types.extend(kind if isinstance(kind, list) else [kind])
+                    for value in node.values():
+                        walk(value)
+                elif isinstance(node, list):
+                    for value in node:
+                        walk(value)
+
+            walk(data)
+            if "HomeAndConstructionBusiness" not in types:
+                raise SystemExit(f"Missing local business schema in {path}")
+            if "WebSite" not in types:
+                raise SystemExit(f"Missing WebSite schema in {path}")
+        for href in re.findall(r'(?:href|src)="(/[^"]*)"', text):
+            bare = href.split("#", 1)[0]
+            if not bare or bare.startswith("/v1/"):
+                continue
+            linked.add(bare)
+    for href in sorted(linked):
+        target = public / href.lstrip("/")
+        if href.endswith("/"):
+            target = public / href.strip("/") / "index.html"
+        if not target.is_file():
+            raise SystemExit(f"Broken internal link {href}")
+
+
 def robots(site):
     host = site["canonical_host"].rstrip("/")
-    return f"User-agent: *\nAllow: /\n\nSitemap: {host}/sitemap.xml\n"
+    agents = [
+        "*",
+        "GPTBot",
+        "OAI-SearchBot",
+        "ChatGPT-User",
+        "Google-Extended",
+        "GoogleOther",
+        "Applebot",
+        "Applebot-Extended",
+        "anthropic-ai",
+        "ClaudeBot",
+        "Claude-SearchBot",
+        "PerplexityBot",
+        "Amazonbot",
+        "Bytespider",
+        "CCBot",
+        "meta-externalagent",
+    ]
+    blocks = []
+    for agent in agents:
+        blocks.append(f"User-agent: {agent}\nAllow: /\n")
+    return "\n".join(blocks) + f"\nSitemap: {host}/sitemap.xml\n"
+
+
+def llms_txt(site, pages):
+    host = site["canonical_host"].rstrip("/")
+    address = site["address"]
+    services = [page for page in pages if page.get("template") == "service"]
+    lines = [
+        f"# {site['name']}",
+        "",
+        "MB Construction and Electric is an electrician and general contractor based in La Quinta, California. The company has worked with homeowners since 1978 and is licensed and insured. The California contractor license number is CSLB #352894.",
+        "",
+        f"Phone: {site['phone_display']}",
+        "Hours: Monday through Friday, 8:00 a.m. to 5:00 p.m. Closed Saturday and Sunday.",
+        f"Address: {address['street']}, {address['city']}, {address['region']} {address['postal_code']}",
+        "",
+        "Use the phone number or the contact form.",
+        "",
+        "## Services",
+    ]
+    for page in services:
+        lines.append(f"- {page['nav']}: {host}{href(page['path'])} — {page['description']}")
+    lines.extend(["", "## Service areas"])
+    for name in site["service_areas"]:
+        lines.append(f"- {name}: {host}/service-areas/{area_slug(name)}/")
+    lines.extend([
+        "",
+        "## Pages",
+        f"- Home: {host}/",
+        f"- About: {host}/about/",
+        f"- Contact: {host}/contact/",
+        f"- Gallery: {host}/gallery/",
+        f"- Service areas: {host}/service-areas/",
+        "",
+    ])
+    return "\n".join(lines)
 
 
 def main():
@@ -1174,6 +1362,7 @@ def main():
         "path": "/",
         "title": home["title"],
         "description": home["description"],
+        "faqs": marketing["faq"]["items"],
     }
     home_html = layout(
         site,
@@ -1182,7 +1371,6 @@ def main():
         render_home(site, home, pages, images, reviews, marketing),
         hero,
         year,
-        extra_head=preload_image(hero, "100vw"),
     )
     write_page(PUBLIC / "index.html", home_html)
 
@@ -1201,13 +1389,31 @@ def main():
             raise SystemExit(f"Unknown template {page['template']}")
         hero_key = page.get("hero") or page.get("image") or "desert-home-tile-roof"
         hero_image = images[hero_key]
-        meta = {"path": page["path"], "title": page["title"], "description": page["description"]}
+        service = None
+        faqs = []
+        crumbs = [{"name": "Home", "path": "/"}, {"name": page["nav"], "path": page["path"]}]
+        if page["template"] == "service":
+            faqs = marketing["services"].get(page["id"], {}).get("faq") or []
+            service = {"name": page["nav"], "serviceType": page["nav"]}
+        meta = {
+            "path": page["path"],
+            "title": page["title"],
+            "description": page["description"],
+            "crumbs": crumbs,
+            "faqs": faqs,
+            "service": service,
+        }
         write_page(output_path(PUBLIC, page["path"]), layout(site, meta, pages, body, hero_image, year))
 
     index_meta = {
         "path": "/service-areas",
         "title": areas["index"]["title"],
         "description": areas["index"]["description"],
+        "crumbs": [
+            {"name": "Home", "path": "/"},
+            {"name": "Service areas", "path": "/service-areas"},
+        ],
+        "faqs": areas["index"]["faq"],
     }
     index_hero = images[areas["index"]["hero"]]
     write_page(
@@ -1219,16 +1425,26 @@ def main():
             render_area_index(site, areas, images, marketing),
             index_hero,
             year,
-            extra_head=preload_image(index_hero, "100vw"),
-            focus="*",
         ),
     )
     area_pages = [index_meta]
     for city in areas["cities"]:
+        city_path = f"/service-areas/{city['slug']}"
         city_meta = {
-            "path": f"/service-areas/{city['slug']}",
+            "path": city_path,
             "title": city["title"],
             "description": city["description"],
+            "crumbs": [
+                {"name": "Home", "path": "/"},
+                {"name": "Service areas", "path": "/service-areas"},
+                {"name": city["name"], "path": city_path},
+            ],
+            "faqs": city["faq"],
+            "service": {
+                "name": f"Electrical and general contracting in {city['name']}",
+                "serviceType": "Electrical and general contracting",
+                "area": city["name"],
+            },
         }
         city_hero = images[city["hero"]]
         write_page(
@@ -1240,8 +1456,6 @@ def main():
                 render_city(site, city, pages, images, marketing),
                 city_hero,
                 year,
-                extra_head=preload_image(city_hero, "100vw"),
-                focus=city["name"],
             ),
         )
         area_pages.append(city_meta)
@@ -1251,6 +1465,7 @@ def main():
 
     (PUBLIC / "sitemap.xml").write_text(sitemap(site, [home_page] + pages + area_pages), encoding="utf-8")
     (PUBLIC / "robots.txt").write_text(robots(site), encoding="utf-8")
+    (PUBLIC / "llms.txt").write_text(llms_txt(site, pages), encoding="utf-8")
 
     forbidden = "578-8212"
     blob = "\n".join(path.read_text(encoding="utf-8") for path in PUBLIC.rglob("*") if path.suffix in {".html", ".xml", ".txt", ".css", ".js", ".json"})
@@ -1258,6 +1473,9 @@ def main():
         raise SystemExit("Primary phone leaked into public output")
     if "cdn-website.com" in blob:
         raise SystemExit("CDN reference leaked into public output")
+    if "goproremodel" in blob.lower() or "mailto:" in blob.lower():
+        raise SystemExit("Email address leaked into public output")
+    audit_public(PUBLIC)
     print(f"Wrote {PUBLIC}")
 
 

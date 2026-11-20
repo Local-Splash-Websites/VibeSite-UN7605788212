@@ -10,10 +10,22 @@
     "eyebrow": "Services",
     "heading": "Electrical and remodeling for homes like yours",
     "text": "A full panel, a circuit that keeps tripping, a kitchen that no longer works, a bathroom that has to be rebuilt. MB Construction and Electric takes the electrical work and the remodeling. Homeowners have called this company since 1978. The license is CSLB #352894, and the company is licensed and insured.",
-    "lines": [
-      "Licensed and insured · CSLB #352894",
-      "Working since 1978",
-      "Monday–Friday, 8:00 a.m.–5:00 p.m."
+    "badges": [
+      {
+        "icon": "shield",
+        "title": "Licensed & Insured",
+        "text": "CA License CSLB #352894"
+      },
+      {
+        "icon": "calendar",
+        "title": "Since 1978",
+        "text": "Serving Coachella Valley homes"
+      },
+      {
+        "icon": "clock",
+        "title": "Mon–Fri 8–5",
+        "text": "Weekend: closed"
+      }
     ]
   },
   "why": {

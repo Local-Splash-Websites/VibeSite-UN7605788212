@@ -4,7 +4,7 @@
     "description": "Service areas: Cathedral City, Coachella, Indio, La Quinta, Palm Desert, Palm Springs, Rancho Mirage, and Riverside County.",
     "h1": "Service areas",
     "lede": "Electrical work and remodeling in the cities published for this company. Licensed and insured since 1978.",
-    "hero": "desert-home-tile-roof",
+    "hero": "desert-home-arched-gate",
     "paragraphs": [
       "MB Construction and Electric is based in La Quinta and lists eight places: Cathedral City, Coachella, Indio, La Quinta, Palm Desert, Palm Springs, Rancho Mirage, and Riverside County. Each city page describes the kind of houses and the kind of electrical and remodeling work that fit that place. The services themselves do not change from city to city. Panels, lighting, fans, circuits, kitchens, bathrooms, additions, and the rest of the published list are available throughout the area.",
       "The office is open Monday through Friday, 8:00 a.m. to 5:00 p.m., and closed Saturday and Sunday. The license is CSLB #352894. Call (760) 227-5499 or use the quote form and name the city."
@@ -66,7 +66,7 @@
     {
       "name": "Coachella",
       "slug": "coachella",
-      "hero": "desert-home-gate-drive",
+      "hero": "desert-home-tile-roof",
       "side": "kitchen-tile-backsplash",
       "title": "Coachella Electrician | MB",
       "description": "Electrical work and remodeling in Coachella, CA. Panels, added rooms, pool circuits, and lighting. Call (760) 227-5499.",
@@ -103,7 +103,7 @@
     {
       "name": "Indio",
       "slug": "indio",
-      "hero": "desert-home-arched-gate",
+      "hero": "labeled-breaker-panel",
       "side": "black-ceiling-fan",
       "title": "Indio Electrician & Remodeler",
       "description": "Electrical work and remodeling in Indio, CA. Panel upgrades, pool circuits, lighting, and kitchens. Call (760) 227-5499.",
